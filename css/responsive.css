@@ -1,0 +1,1547 @@
+/* =====================================================
+   BÁCH SƠN TỬU
+   RESPONSIVE CSS
+===================================================== */
+
+
+/* =====================================================
+   TABLET
+   <= 992px
+===================================================== */
+
+@media (max-width: 992px) {
+
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    .container {
+        width: 90%;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header-container {
+        min-height: 78px;
+    }
+
+    .logo img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .navbar {
+        gap: 18px;
+    }
+
+    .navbar a {
+        font-size: 13px;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        min-height: 580px;
+    }
+
+    .hero-content {
+        padding: 70px 20px;
+    }
+
+    .hero h1 {
+        font-size: clamp(45px, 7vw, 70px);
+    }
+
+    .hero-slogan {
+        font-size: 15px;
+        letter-spacing: 2.5px;
+    }
+
+    .hero-description {
+        max-width: 650px;
+        font-size: 16px;
+    }
+
+
+    /* =========================
+       STORY
+    ========================= */
+
+    .story {
+        padding: 80px 6%;
+    }
+
+    .story-container {
+        gap: 50px;
+    }
+
+    .story-image {
+        height: 450px;
+    }
+
+    .story-content h2 {
+        font-size: 36px;
+    }
+
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+        padding: 85px 6%;
+    }
+
+    .products-header h2 {
+        font-size: 38px;
+    }
+
+    .products-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+
+    .product-image {
+        height: 330px;
+    }
+
+    .product-info {
+        padding: 22px 20px 25px;
+    }
+
+    .product-info h3 {
+        font-size: 23px;
+    }
+
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+        padding: 85px 4%;
+    }
+
+    .process-header {
+        margin-bottom: 70px;
+    }
+
+    .process-header h2 {
+        font-size: 42px;
+    }
+
+    .process-item {
+        padding: 0 12px;
+    }
+
+    .process-icon {
+        width: 78px;
+        height: 78px;
+
+        font-size: 25px;
+
+        margin-bottom: 30px;
+    }
+
+    .process-item:not(:last-child)::after {
+        top: 39px;
+        left: calc(50% + 39px);
+        width: calc(100% - 78px);
+    }
+
+    .process-content span {
+        font-size: 10px;
+        letter-spacing: 1.5px;
+    }
+
+    .process-content h3 {
+        font-size: 20px;
+    }
+
+    .process-content p {
+        font-size: 13px;
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    .gallery {
+        padding: 85px 6%;
+    }
+
+    .gallery-header h2 {
+        font-size: 38px;
+    }
+
+    .gallery-grid {
+        grid-template-rows: 220px 220px;
+        gap: 12px;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+        padding: 85px 6%;
+    }
+
+    .contact-container {
+        gap: 50px;
+    }
+
+    .contact-info h2 {
+        font-size: 36px;
+    }
+
+    .contact-form {
+        padding: 35px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        padding: 65px 6% 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1.3fr 1fr 1fr;
+        gap: 40px;
+    }
+
+    .footer-brand {
+        grid-column: span 3;
+        max-width: 500px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+   <= 768px
+===================================================== */
+
+@media (max-width: 768px) {
+
+
+    /* =========================
+       GLOBAL
+    ========================= */
+
+    .container {
+        width: 90%;
+    }
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header-container {
+        min-height: 72px;
+    }
+
+    .logo img {
+        width: 62px;
+        height: 62px;
+    }
+
+    /* Ẩn menu desktop */
+
+    .navbar {
+        display: none;
+    }
+
+    /* Hiện nút menu */
+
+    .menu-toggle {
+        display: flex;
+    }
+
+    /* Menu mobile */
+
+    .mobile-menu {
+        top: 72px;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        min-height: 520px;
+    }
+
+    .hero-content {
+        padding: 60px 15px;
+    }
+
+    .hero h1 {
+        font-size: clamp(40px, 11vw, 58px);
+        letter-spacing: 1px;
+    }
+
+    .hero-line {
+        width: 90px;
+        margin: 18px auto 15px;
+    }
+
+    .hero-slogan {
+        font-size: 13px;
+        letter-spacing: 2px;
+        line-height: 1.6;
+    }
+
+    .hero-description {
+        max-width: 500px;
+
+        margin: 18px auto 28px;
+
+        font-size: 14px;
+        line-height: 1.7;
+    }
+
+    .hero-button {
+        padding: 12px 20px;
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       STORY
+    ========================= */
+
+    .story {
+        padding: 70px 6%;
+    }
+
+    .story-container {
+        grid-template-columns: 1fr;
+        gap: 45px;
+    }
+
+    .story-image {
+        height: 400px;
+    }
+
+    .story-content {
+        max-width: 100%;
+    }
+
+    .story-content h2 {
+        font-size: 34px;
+    }
+
+    .story-content p {
+        font-size: 14px;
+    }
+
+    .story-button {
+        padding: 13px 20px;
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+        padding: 75px 6%;
+    }
+
+    .products-header {
+        margin-bottom: 45px;
+    }
+
+    .products-header h2 {
+        font-size: 36px;
+    }
+
+    .products-header p {
+        font-size: 14px;
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 500px;
+    }
+
+    .product-image {
+        height: 430px;
+    }
+
+    .product-info {
+        padding: 25px;
+    }
+
+    .product-info h3 {
+        font-size: 26px;
+    }
+
+    .product-info p {
+        font-size: 14px;
+    }
+
+    .products-button {
+        margin-top: 40px;
+    }
+
+    .view-all-button {
+        padding: 13px 22px;
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+        padding: 75px 6%;
+    }
+
+    .process-header {
+        margin-bottom: 60px;
+    }
+
+    .process-header h2 {
+        font-size: 36px;
+    }
+
+    .process-header p {
+        font-size: 14px;
+    }
+
+    /*
+       Chuyển 5 công đoạn
+       thành danh sách dọc
+    */
+
+    .process-list {
+        grid-template-columns: 1fr;
+        gap: 0;
+        max-width: 550px;
+        margin: 0 auto;
+    }
+
+    .process-item {
+        display: grid;
+
+        grid-template-columns: 80px 1fr;
+
+        column-gap: 25px;
+
+        text-align: left;
+
+        padding: 0 0 45px;
+    }
+
+    .process-icon {
+        width: 72px;
+        height: 72px;
+
+        margin: 0;
+
+        font-size: 24px;
+    }
+
+    /*
+       Đường nối dọc
+    */
+
+    .process-item:not(:last-child)::after {
+
+        top: 72px;
+
+        left: 35px;
+
+        width: 1px;
+
+        height: calc(100% - 72px);
+
+        background-color: #806b58;
+    }
+
+    .process-content {
+        padding-top: 5px;
+    }
+
+    .process-content span {
+        margin-bottom: 8px;
+
+        font-size: 10px;
+
+        letter-spacing: 1.5px;
+    }
+
+    .process-content h3 {
+        font-size: 22px;
+
+        margin-bottom: 10px;
+    }
+
+    .process-content p {
+        max-width: none;
+
+        margin: 0;
+
+        font-size: 13px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    .gallery {
+        padding: 75px 6%;
+    }
+
+    .gallery-header {
+        margin-bottom: 40px;
+    }
+
+    .gallery-header h2 {
+        font-size: 36px;
+    }
+
+    .gallery-header p {
+        font-size: 14px;
+    }
+
+    /*
+       Gallery chuyển thành
+       2 cột trên điện thoại
+    */
+
+    .gallery-grid {
+
+        grid-template-columns: 1fr 1fr;
+
+        grid-template-rows:
+            220px
+            180px
+            180px;
+
+        gap: 10px;
+    }
+
+    .gallery-large {
+        grid-column: span 2;
+        grid-row: span 1;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+        padding: 75px 6%;
+    }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        gap: 50px;
+    }
+
+    .contact-info {
+        max-width: 100%;
+    }
+
+    .contact-info h2 {
+        font-size: 34px;
+    }
+
+    .contact-info > p {
+        font-size: 14px;
+    }
+
+    .contact-form {
+        padding: 30px 25px;
+    }
+
+    .contact-form h3 {
+        font-size: 27px;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+        gap: 0;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        padding: 55px 6% 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr 1fr;
+        gap: 40px 25px;
+    }
+
+    .footer-brand {
+        grid-column: span 2;
+        max-width: 100%;
+    }
+
+    .footer-column h3 {
+        font-size: 11px;
+    }
+
+    .footer-column li a {
+        font-size: 13px;
+    }
+
+    .footer-contact p {
+        font-size: 13px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+
+        text-align: center;
+
+        align-items: center;
+
+        gap: 8px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+   <= 480px
+===================================================== */
+
+@media (max-width: 480px) {
+
+
+    /* =========================
+       HEADER
+    ========================= */
+
+    .header-container {
+        min-height: 68px;
+    }
+
+    .logo img {
+        width: 58px;
+        height: 58px;
+    }
+
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .mobile-menu {
+        top: 68px;
+    }
+
+
+    /* =========================
+       HERO
+    ========================= */
+
+    .hero {
+        min-height: 480px;
+    }
+
+    .hero-content {
+        padding: 50px 10px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .hero-slogan {
+        font-size: 11px;
+        letter-spacing: 1.5px;
+    }
+
+    .hero-description {
+        font-size: 13px;
+    }
+
+    .hero-button {
+        padding: 11px 17px;
+        font-size: 11px;
+    }
+
+
+    /* =========================
+       STORY
+    ========================= */
+
+    .story {
+        padding: 60px 6%;
+    }
+
+    .story-image {
+        height: 320px;
+    }
+
+    .section-subtitle {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .story-content h2 {
+        font-size: 30px;
+    }
+
+
+    /* =========================
+       PRODUCTS
+    ========================= */
+
+    .products {
+        padding: 60px 6%;
+    }
+
+    .products-header h2 {
+        font-size: 31px;
+    }
+
+    .product-image {
+        height: 380px;
+    }
+
+    .product-info h3 {
+        font-size: 24px;
+    }
+
+
+    /* =========================
+       PROCESS
+    ========================= */
+
+    .process {
+        padding: 60px 6%;
+    }
+
+    .process-header h2 {
+        font-size: 31px;
+    }
+
+    .process-item {
+        grid-template-columns: 65px 1fr;
+        column-gap: 18px;
+        padding-bottom: 40px;
+    }
+
+    .process-icon {
+        width: 60px;
+        height: 60px;
+        font-size: 20px;
+    }
+
+    .process-item:not(:last-child)::after {
+        top: 60px;
+        left: 29px;
+        height: calc(100% - 60px);
+    }
+
+    .process-content h3 {
+        font-size: 19px;
+    }
+
+    .process-content p {
+        font-size: 12px;
+    }
+
+
+    /* =========================
+       GALLERY
+    ========================= */
+
+    .gallery {
+        padding: 60px 6%;
+    }
+
+    .gallery-header h2 {
+        font-size: 31px;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+
+        grid-template-rows:
+            260px
+            200px
+            200px
+            200px
+            200px;
+    }
+
+    .gallery-large {
+        grid-column: span 1;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+        padding: 60px 6%;
+    }
+
+    .contact-info h2 {
+        font-size: 30px;
+    }
+
+    .contact-form {
+        padding: 25px 20px;
+    }
+
+
+    /* =========================
+       FOOTER
+    ========================= */
+
+    .footer {
+        padding: 50px 6% 0;
+    }
+
+    .footer-container {
+        grid-template-columns: 1fr;
+        gap: 35px;
+    }
+
+    .footer-brand {
+        grid-column: span 1;
+    }
+
+    .footer-bottom {
+        padding: 20px 0;
+    }
+
+}
+/* =====================================================
+   ABOUT PAGE - RESPONSIVE
+===================================================== */
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 992px) {
+
+    .about-hero {
+        min-height: 460px;
+
+        padding: 70px 6%;
+    }
+
+    .about-hero h1 {
+        font-size: 60px;
+    }
+
+
+    /* INTRO */
+
+    .about-intro {
+        padding: 85px 6%;
+    }
+
+    .about-intro-container {
+        gap: 50px;
+    }
+
+    .about-intro-image {
+        height: 450px;
+    }
+
+    .about-intro-content h2 {
+        font-size: 37px;
+    }
+
+
+    /* VALUES */
+
+    .about-values {
+        padding: 85px 6%;
+    }
+
+    .about-values-grid {
+        gap: 20px;
+    }
+
+    .about-value-card {
+        padding: 35px 20px;
+    }
+
+
+    /* PHILOSOPHY */
+
+    .about-philosophy {
+        padding: 85px 6%;
+    }
+
+    .about-philosophy-container {
+        gap: 50px;
+    }
+
+    .about-philosophy-content h2 {
+        font-size: 37px;
+    }
+
+    .about-philosophy-image {
+        height: 450px;
+    }
+
+
+    /* CTA */
+
+    .about-cta {
+        padding: 85px 6%;
+    }
+
+    .about-cta h2 {
+        font-size: 42px;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    /* HERO */
+
+    .about-hero {
+        min-height: 430px;
+
+        padding: 60px 6%;
+    }
+
+    .about-hero h1 {
+        font-size: 48px;
+    }
+
+    .about-hero p {
+        font-size: 14px;
+    }
+
+
+    /* INTRO */
+
+    .about-intro {
+        padding: 70px 6%;
+    }
+
+    .about-intro-container {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .about-intro-image {
+        height: 380px;
+    }
+
+    .about-intro-content {
+        max-width: 100%;
+    }
+
+    .about-intro-content h2 {
+        font-size: 34px;
+    }
+
+    .about-intro-content p {
+        font-size: 14px;
+    }
+
+
+    /* VALUES */
+
+    .about-values {
+        padding: 70px 6%;
+    }
+
+    .about-values-header {
+        margin-bottom: 45px;
+    }
+
+    .about-values-header h2 {
+        font-size: 34px;
+    }
+
+    .about-values-header p {
+        font-size: 14px;
+    }
+
+    .about-values-grid {
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+        max-width: 500px;
+    }
+
+    .about-value-card {
+        padding: 35px 25px;
+    }
+
+
+    /* PHILOSOPHY */
+
+    .about-philosophy {
+        padding: 70px 6%;
+    }
+
+    .about-philosophy-container {
+        grid-template-columns: 1fr;
+
+        gap: 45px;
+    }
+
+    .about-philosophy-image {
+        height: 380px;
+
+        order: -1;
+    }
+
+    .about-philosophy-content {
+        max-width: 100%;
+    }
+
+    .about-philosophy-content h2 {
+        font-size: 34px;
+    }
+
+    .about-philosophy-content p {
+        font-size: 14px;
+    }
+
+
+    /* CTA */
+
+    .about-cta {
+        padding: 75px 6%;
+    }
+
+    .about-cta h2 {
+        font-size: 36px;
+    }
+
+    .about-cta p {
+        font-size: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .about-hero {
+        min-height: 380px;
+    }
+
+    .about-hero h1 {
+        font-size: 40px;
+    }
+
+    .about-hero p {
+        font-size: 13px;
+    }
+
+
+    .about-intro-image,
+    .about-philosophy-image {
+        height: 320px;
+    }
+
+
+    .about-intro-content h2,
+    .about-philosophy-content h2 {
+        font-size: 30px;
+    }
+
+
+    .about-values-header h2 {
+        font-size: 30px;
+    }
+
+
+    .about-value-icon {
+        width: 65px;
+        height: 65px;
+
+        font-size: 23px;
+    }
+
+
+    .about-value-card h3 {
+        font-size: 25px;
+    }
+
+
+    .about-cta h2 {
+        font-size: 31px;
+    }
+
+}
+/* =====================================================
+   LOCATION - RESPONSIVE
+===================================================== */
+
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 992px) {
+
+    .location {
+        padding: 85px 6%;
+    }
+
+    .location-header {
+        margin-bottom: 40px;
+    }
+
+    .location-header h2 {
+        font-size: 38px;
+    }
+
+    .location-header p {
+        font-size: 15px;
+    }
+
+    .location-map {
+        height: 400px;
+    }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .location {
+        padding: 70px 6%;
+    }
+
+    .location-header {
+        margin-bottom: 35px;
+    }
+
+    .location-header h2 {
+        font-size: 34px;
+    }
+
+    .location-header p {
+        font-size: 14px;
+    }
+
+    .location-map {
+        height: 350px;
+    }
+
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    .location {
+        padding: 60px 6%;
+    }
+
+    .location-header h2 {
+        font-size: 30px;
+    }
+
+    .location-header p {
+        font-size: 13px;
+    }
+
+    .location-map {
+        height: 300px;
+    }
+
+}
+/* =====================================================
+   LOCATION ADDRESS - RESPONSIVE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .location-address {
+
+        align-items: flex-start;
+
+        padding: 18px;
+
+        gap: 14px;
+    }
+
+
+    .location-address > i {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 17px;
+    }
+
+
+    .location-address strong {
+
+        font-size: 16px;
+    }
+
+
+    .location-address p {
+
+        font-size: 13px;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .location-address {
+
+        padding: 15px;
+    }
+
+
+    .location-address > i {
+
+        width: 38px;
+        height: 38px;
+
+        font-size: 15px;
+    }
+
+
+    .location-address strong {
+
+        font-size: 15px;
+    }
+
+}
+/* =====================================================
+   LOCATION ADDRESS - MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .location-address {
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 20px;
+
+        gap: 20px;
+    }
+
+
+    .location-address-info {
+
+        align-items: flex-start;
+
+        gap: 14px;
+    }
+
+
+    .location-address-icon {
+
+        width: 42px;
+        height: 42px;
+
+        font-size: 17px;
+    }
+
+
+    .location-address strong {
+
+        font-size: 16px;
+    }
+
+
+    .location-address p {
+
+        font-size: 13px;
+    }
+
+
+    .location-direction-button {
+
+        width: 100%;
+
+        padding: 14px 20px;
+    }
+
+}
+/* =====================================================
+   PRODUCTS PAGE - RESPONSIVE
+===================================================== */
+
+
+/* =====================================================
+   TABLET
+===================================================== */
+
+@media (max-width: 992px) {
+
+    /* HERO */
+
+    .products-hero {
+        min-height: 400px;
+
+        padding: 70px 6%;
+    }
+
+
+    .products-hero h1 {
+        font-size: 52px;
+    }
+
+
+    /* INTRO */
+
+    .products-intro {
+        padding: 80px 6%;
+    }
+
+
+    .products-intro-content h2 {
+        font-size: 38px;
+    }
+
+
+    /* PRODUCT LIST */
+
+    .product-list-section {
+        padding: 85px 6%;
+    }
+
+
+    .product-list-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 25px;
+    }
+
+
+    .product-detail-image {
+        height: 380px;
+    }
+
+
+    /* CTA */
+
+    .products-cta {
+        padding: 80px 6%;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    /* HERO */
+
+    .products-hero {
+        min-height: 360px;
+
+        padding: 60px 6%;
+    }
+
+
+    .products-hero h1 {
+        font-size: 42px;
+
+        line-height: 1.15;
+    }
+
+
+    .products-hero p {
+        font-size: 14px;
+    }
+
+
+    /* INTRO */
+
+    .products-intro {
+        padding: 70px 6%;
+    }
+
+
+    .products-intro-content h2 {
+        font-size: 34px;
+    }
+
+
+    .products-intro-content p {
+        font-size: 14px;
+    }
+
+
+    /* PRODUCT LIST */
+
+    .product-list-section {
+        padding: 70px 6%;
+    }
+
+
+    .product-list-header {
+        margin-bottom: 40px;
+    }
+
+
+    .product-list-header h2 {
+        font-size: 34px;
+    }
+
+
+    .product-list-grid {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+
+    .product-detail-image {
+        height: 420px;
+    }
+
+
+    .product-detail-content {
+        padding: 26px 24px 28px;
+    }
+
+
+    .product-detail-content h3 {
+        font-size: 26px;
+    }
+
+
+    /* CTA */
+
+    .products-cta {
+        padding: 70px 6%;
+    }
+
+
+    .products-cta h2 {
+        font-size: 34px;
+    }
+
+
+    .products-cta p {
+        font-size: 14px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .products-hero {
+        min-height: 330px;
+
+        padding: 50px 6%;
+    }
+
+
+    .products-hero h1 {
+        font-size: 36px;
+    }
+
+
+    .products-hero .section-subtitle {
+        font-size: 11px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .products-intro-content h2 {
+        font-size: 30px;
+    }
+
+
+    .product-list-header h2 {
+        font-size: 30px;
+    }
+
+
+    .product-detail-image {
+        height: 360px;
+    }
+
+
+    .product-detail-content h3 {
+        font-size: 24px;
+    }
+
+
+    .product-detail-content > p {
+        font-size: 13px;
+    }
+
+
+    .products-cta h2 {
+        font-size: 30px;
+    }
+
+}

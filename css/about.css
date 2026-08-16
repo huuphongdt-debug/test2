@@ -1,0 +1,346 @@
+/* =====================================================
+   ABOUT PAGE - GIỚI THIỆU
+===================================================== */
+
+
+/* =====================================================
+   1. ABOUT HERO
+===================================================== */
+
+.about-hero {
+    min-height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 8%;
+    background: var(--brown);
+    text-align: center;
+    color: #F5EEE5;
+}
+
+.about-hero-content {
+    max-width: 900px;
+}
+
+.about-hero .section-subtitle {
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.about-hero h1 {
+    color: #F5EEE5;
+}
+
+.about-hero-line {
+    position: relative;
+    width: 100px;
+    height: 2px;
+    margin: 25px auto;
+    background: var(--gold);
+}
+
+.about-hero-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    background: var(--gold);
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+}
+
+.about-hero p {
+    max-width: 680px;
+    margin: 0 auto;
+    color: #E8DDD3;
+    font-size: 17px;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   2. ABOUT INTRO
+===================================================== */
+
+.about-intro {
+    padding: 60px 8%;
+    background: var(--white);
+}
+
+.about-intro-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+
+/* HÌNH ẢNH */
+
+.about-intro-image {
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+}
+
+.about-intro-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.about-intro-image:hover img {
+    transform: scale(1.04);
+}
+
+
+/* NỘI DUNG */
+
+.about-intro-content {
+    max-width: 520px;
+}
+
+
+.about-line {
+    width: 250px;
+    height: 2px;
+    margin-bottom: 22px;
+    background: var(--gold);
+}
+
+.about-intro-content p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   3. GIÁ TRỊ CỐT LÕI
+===================================================== */
+
+.about-values {
+    padding: 60px 8%;
+    background: var(--cream-dark);
+}
+
+.about-values-header {
+    max-width: 750px;
+    margin: 0 auto 65px;
+    text-align: center;
+}
+
+.about-values-header p {
+    margin: 0;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* GRID */
+
+.about-values-grid {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns:
+        repeat(3, 1fr);
+    gap: 30px;
+}
+
+
+/* CARD */
+
+.about-value-card {
+    padding: 45px 30px;
+    background: var(--white);
+    border: 1px solid #E5D9C9;
+    text-align: center;
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+.about-value-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--gold-light);
+    box-shadow: var(--shadow-hover);
+}
+
+
+/* ICON */
+
+.about-value-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    color: var(--gold);
+    font-size: 27px;
+    transition: 0.35s ease;
+}
+
+.about-value-card:hover .about-value-icon {
+    background: var(--gold);
+    color: var(--white);
+}
+
+
+/* SỐ */
+
+.about-value-card > span {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--gold-dark);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+
+/* TIÊU ĐỀ */
+
+
+/* MÔ TẢ */
+
+.about-value-card p {
+    max-width: 300px;
+    margin: 0 auto;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* =====================================================
+   4. TRIẾT LÝ THƯƠNG HIỆU
+===================================================== */
+
+.about-philosophy {
+    padding: 60px 8%;
+    background: var(--white);
+}
+
+.about-philosophy-container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+
+/* CONTENT */
+
+.about-philosophy-content {
+    max-width: 520px;
+}
+
+
+.about-philosophy-content p {
+    margin-bottom: 20px;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* IMAGE */
+
+.about-philosophy-image {
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+}
+
+.about-philosophy-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.about-philosophy-image:hover img {
+    transform: scale(1.04);
+}
+
+
+/* =====================================================
+   5. CTA
+===================================================== */
+
+.about-cta {
+    padding: 60px 8%;
+
+    background:
+        linear-gradient(
+            rgba(59, 42, 32, 0.94),
+            rgba(59, 42, 32, 0.94)
+        );
+
+    text-align: center;
+}
+
+.about-cta-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.about-cta .section-subtitle {
+    color: var(--gold-light);
+}
+
+.about-cta h2 {
+    color: #F5EEE5;
+}
+
+.about-cta p {
+    max-width: 650px;
+    margin: 0 auto 35px;
+    color: #D8CBC0;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+/* BUTTON */
+
+.about-cta-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 28px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+.about-cta-button i {
+    transition: transform 0.3s ease;
+}
+
+.about-cta-button:hover {
+    background: var(--gold-light);
+    transform: translateY(-3px);
+}
+
+.about-cta-button:hover i {
+    transform: translateX(5px);
+}
