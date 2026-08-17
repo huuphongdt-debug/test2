@@ -1,0 +1,358 @@
+/* =====================================================
+   STORY - CÂU CHUYỆN BÁCH SƠN TỬU
+===================================================== */
+
+
+/* =====================================================
+   HERO
+===================================================== */
+
+.story-hero {
+
+    min-height: 560px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 60px 8%;
+    background: var(--brown);
+    color: #F5EEE5;
+}
+
+
+.story-hero-content {
+
+    width: 100%;
+    max-width: 850px;
+    margin: 0 auto;
+}
+
+
+.story-hero .section-subtitle {
+
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+
+.story-hero h1 {
+
+    color: #f5eee5;
+}
+
+
+.story-hero-line {
+
+    width: 90px;
+    height: 2px;
+    margin: 30px auto;
+    background-color: var(--gold);
+    position: relative;
+}
+
+
+.story-hero-line::after {
+
+    content: "";
+    position: absolute;
+    width: 9px;
+    height: 9px;
+    left: 50%;
+    top: 50%;
+    background-color: var(--gold);
+
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+}
+
+
+.story-hero p {
+
+    max-width: 700px;
+    margin: 0 auto;
+    color: #f5eee5;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+
+/* =====================================================
+   STORY SECTION
+===================================================== */
+
+.story-section {
+
+    padding: 60px 8%;
+    background-color: var(--cream-dark);
+}
+
+
+.story-section:nth-of-type(even) {
+
+    background-color: var(--cream-light);
+}
+
+
+.story-container {
+
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+
+.story-reverse {
+
+    grid-template-columns: 1fr 1fr;
+}
+
+
+
+/* =====================================================
+   IMAGE
+===================================================== */
+
+.story-image {
+
+    width: 100%;
+    height: 520px;
+    overflow: hidden;
+    background-color: #e6dacb;
+}
+
+
+.story-image img {
+
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    transition: transform 0.7s ease;
+}
+
+
+.story-image:hover img {
+
+    transform: scale(1.04);
+}
+
+
+
+/* =====================================================
+   CONTENT
+===================================================== */
+
+.story-content {
+
+    max-width: 520px;
+}
+
+
+
+.story-line {
+
+    width: 250px;
+    height: 2px;
+    margin-bottom: 30px;
+    background-color: var(--gold);
+}
+
+
+.story-content p {
+
+    margin: 0 0 20px;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+
+/* =====================================================
+   TIME
+===================================================== */
+
+.story-time {
+
+    padding: 60px 8%;
+    background-color: var(--cream-dark);
+    text-align: center;
+}
+
+
+.story-time-content {
+
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+
+.story-time .section-subtitle {
+
+    background-color: var(--cream-dark);
+}
+
+
+.story-time-line {
+
+    width: 250px;
+    height: 2px;
+    margin: 0 auto 30px;
+    background-color: var(--gold);
+}
+
+
+.story-time p {
+
+    max-width: 700px;
+    margin: 0 auto 20px;
+    color: var(--text-light);
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+
+/* =====================================================
+   VALUES
+===================================================== */
+
+.story-values {
+
+    padding: 60px 8%;
+    background-color: var(--cream-light);
+}
+
+
+.story-values-header {
+
+    max-width: 700px;
+    margin: 0 auto 60px;
+    text-align: center;
+}
+
+
+
+.story-values-grid {
+
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns:
+        repeat(4, 1fr);
+    gap: 25px;
+}
+
+
+.story-value {
+
+    padding: 40px 25px;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #d8c29a;
+    transition: 0.35s ease;
+}
+
+
+.story-value:hover {
+
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 15px 35px
+        rgba(59, 42, 32, 0.10);
+}
+
+
+.story-value-icon {
+
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #b8862b;
+    border-radius: 50%;
+    color: #b8862b;
+    font-size: 25px;
+}
+
+.story-value p {
+
+    margin: 0;
+    color: #665a52;
+    font-size: 14px;
+    line-height: 1.8;
+}
+
+
+
+/* =====================================================
+   CTA
+===================================================== */
+
+.story-cta {
+
+    padding: 60px 8%;
+    background-color: #ffffff;
+    text-align: center;
+}
+
+
+.story-cta-content {
+
+    max-width: 750px;
+
+    margin: 0 auto;
+}
+
+
+.story-cta p {
+
+    margin: 0 0 30px;
+    color: #665a52;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+
+.story-cta-button {
+
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 15px 28px;
+    background-color: #b8862b;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    transition: 0.3s ease;
+}
+
+
+.story-cta-button i {
+
+    transition: transform 0.3s ease;
+}
+
+
+.story-cta-button:hover {
+
+    background-color: #3b2a20;
+
+    transform: translateY(-2px);
+}
+
+
+.story-cta-button:hover i {
+
+    transform: translateX(5px);
+}
