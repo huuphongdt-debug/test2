@@ -1,9 +1,9 @@
 /* =====================================================
    BÁCH SƠN TỬU
-   JAVASCRIPT DÙNG CHUNG TOÀN WEBSITE
+   JAVASCRIPT — BẢN CHUẨN HÓA DÙNG CHUNG TOÀN WEBSITE
 ===================================================== */
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", () => {
 
     /* =================================================
        1. MENU MOBILE
@@ -11,294 +11,214 @@ document.addEventListener("DOMContentLoaded", function () {
 
     const menuToggle = document.querySelector(".menu-toggle");
     const mobileMenu = document.querySelector(".mobile-menu");
+    const header = document.querySelector(".header");
 
-    function closeMobileMenu() {
+    const closeMobileMenu = () => {
+        if (mobileMenu) mobileMenu.classList.remove("show");
 
-        if (mobileMenu) {
-            mobileMenu.classList.remove("show");
+        const icon = menuToggle?.querySelector("i");
+        if (icon) {
+            icon.classList.remove("fa-xmark");
+            icon.classList.add("fa-bars");
         }
-
-        if (menuToggle) {
-
-            const icon = menuToggle.querySelector("i");
-
-            if (icon) {
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-            }
-        }
-    }
-
+    };
 
     if (menuToggle && mobileMenu) {
-
-        menuToggle.addEventListener("click", function (event) {
-
+        menuToggle.addEventListener("click", (event) => {
             event.stopPropagation();
-
             mobileMenu.classList.toggle("show");
 
             const icon = menuToggle.querySelector("i");
-
             if (!icon) return;
 
-            if (mobileMenu.classList.contains("show")) {
-
-                icon.classList.remove("fa-bars");
-                icon.classList.add("fa-xmark");
-
-            } else {
-
-                icon.classList.remove("fa-xmark");
-                icon.classList.add("fa-bars");
-
-            }
-
+            icon.classList.toggle("fa-bars", !mobileMenu.classList.contains("show"));
+            icon.classList.toggle("fa-xmark", mobileMenu.classList.contains("show"));
         });
-
     }
 
-
-    /* =================================================
-       2. ĐÓNG MENU KHI CLICK LINK
-    ================================================= */
-
-    const mobileLinks =
-        document.querySelectorAll(".mobile-menu a");
-
-    mobileLinks.forEach(function (link) {
-
-        link.addEventListener("click", function () {
-
-            closeMobileMenu();
-
-        });
-
+    mobileMenu?.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", closeMobileMenu);
     });
 
+    document.addEventListener("click", (event) => {
+        if (!menuToggle || !mobileMenu) return;
 
-    /* =================================================
-       3. ĐÓNG MENU KHI CLICK RA NGOÀI
-    ================================================= */
+        if (!mobileMenu.contains(event.target) && !menuToggle.contains(event.target)) {
+            closeMobileMenu();
+        }
+    });
 
-    document.addEventListener("click", function (event) {
+/* =================================================
+   2. HEADER ẨN / HIỆN KHI CUỘN
+================================================= */
 
-        if (!menuToggle || !mobileMenu) {
+let lastScrollTop = 0;
+
+if (header) {
+
+    window.addEventListener("scroll", function () {
+
+        const currentScroll =
+            window.scrollY ||
+            document.documentElement.scrollTop ||
+            0;
+
+
+        /* =========================
+           ĐẦU TRANG
+        ========================= */
+
+        if (currentScroll <= 50) {
+
+            header.style.transform = "translateY(0)";
+
+            lastScrollTop = currentScroll;
+
             return;
         }
 
-        const clickedInsideMenu =
-            mobileMenu.contains(event.target);
 
-        const clickedToggle =
-            menuToggle.contains(event.target);
+        /* =========================
+           MOBILE + TABLET
+        ========================= */
 
-        if (
-            !clickedInsideMenu &&
-            !clickedToggle
-        ) {
+        if (window.innerWidth <= 992) {
 
-            closeMobileMenu();
+
+            /* CUỘN XUỐNG */
+
+            if (
+                currentScroll > lastScrollTop &&
+                currentScroll > 100
+            ) {
+
+                header.style.transform =
+                    "translateY(-110%)";
+
+                closeMobileMenu();
+            }
+
+
+            /* CUỘN LÊN */
+
+            else if (
+                currentScroll < lastScrollTop
+            ) {
+
+                header.style.transform =
+                    "translateY(0)";
+            }
 
         }
 
-    });
 
+        /* =========================
+           DESKTOP
+        ========================= */
+
+        else {
+
+            header.style.transform =
+                "translateY(0)";
+        }
+
+
+        lastScrollTop = currentScroll;
+
+    }, {
+        passive: true
+    });
+}
 
     /* =================================================
-       4. TỰ ĐỘNG ACTIVE MENU
+       3. ACTIVE MENU THEO TRANG
     ================================================= */
 
     const currentPage =
-        window.location.pathname.split("/").pop() ||
-        "index.html";
+        window.location.pathname.split("/").pop() || "index.html";
 
+    const navLinks = document.querySelectorAll(".navbar a, .mobile-menu a");
 
-    const allNavLinks =
-        document.querySelectorAll(
-            ".navbar a, .mobile-menu a"
-        );
-
-
-    allNavLinks.forEach(function (link) {
-
-        const href =
-            link.getAttribute("href");
-
+    navLinks.forEach(link => {
+        const href = link.getAttribute("href");
         if (!href) return;
 
+        const page = href.split("#")[0].split("?")[0];
+        if (!page || !page.endsWith(".html")) return;
 
-        /*
-           Lấy tên file HTML
-        */
-
-        const linkPage =
-            href
-                .split("#")[0]
-                .split("?")[0];
-
-
-        /*
-           Chỉ xử lý link HTML
-        */
-
-        if (
-            linkPage &&
-            linkPage.endsWith(".html")
-        ) {
-
-            if (linkPage === currentPage) {
-
-                link.classList.add("active");
-
-            } else {
-
-                link.classList.remove("active");
-
-            }
-
-        }
-
+        link.classList.toggle("active", page === currentPage);
     });
 
-
     /* =================================================
-       5. HEADER KHI CUỘN
+       4. ACTIVE MENU THEO SECTION — TRANG CHỦ
+       Giúp Trang chủ / Giới thiệu / Sản phẩm... đổi active
+       khi người dùng cuộn đến từng khu vực.
     ================================================= */
 
-    const header =
-        document.querySelector(".header");
+    const sectionLinks = [...document.querySelectorAll('.navbar a[href*="#"]')]
+        .filter(link => {
+            const href = link.getAttribute("href");
+            return href && href.startsWith("#");
+        });
 
-    let lastScrollTop = 0;
+    const sections = sectionLinks
+        .map(link => document.querySelector(link.getAttribute("href")))
+        .filter(Boolean);
 
+    if (sections.length && "IntersectionObserver" in window) {
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
 
-    if (header) {
+                const id = `#${entry.target.id}`;
+                sectionLinks.forEach(link => {
+                    link.classList.toggle(
+                        "active",
+                        link.getAttribute("href") === id
+                    );
+                });
+            });
+        }, {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: 0
+        });
 
-        window.addEventListener(
-            "scroll",
-            function () {
-
-                const currentScroll =
-                    window.pageYOffset ||
-                    document.documentElement.scrollTop;
-
-
-                /*
-                   Chỉ ẩn header trên mobile
-                */
-
-                if (window.innerWidth <= 768) {
-
-                    if (
-                        currentScroll > lastScrollTop &&
-                        currentScroll > 100
-                    ) {
-
-                        header.classList.add("hide");
-
-                        closeMobileMenu();
-
-                    } else {
-
-                        header.classList.remove("hide");
-
-                    }
-
-                } else {
-
-                    header.classList.remove("hide");
-
-                }
-
-
-                lastScrollTop =
-                    currentScroll <= 0
-                        ? 0
-                        : currentScroll;
-
-            },
-            {
-                passive: true
-            }
-        );
-
+        sections.forEach(section => sectionObserver.observe(section));
     }
 
-
     /* =================================================
-       6. SMOOTH SCROLL
+       5. CUỘN MƯỢT
     ================================================= */
 
-    const anchorLinks =
-        document.querySelectorAll(
-            'a[href^="#"]'
-        );
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
+        link.addEventListener("click", (event) => {
+            const targetId = link.getAttribute("href");
+            if (!targetId || targetId === "#") return;
 
+            const target = document.querySelector(targetId);
+            if (!target) return;
 
-    anchorLinks.forEach(function (link) {
+            event.preventDefault();
 
-        link.addEventListener(
-            "click",
-            function (event) {
+            const headerHeight = header?.offsetHeight || 0;
+            const targetPosition =
+                target.getBoundingClientRect().top +
+                window.pageYOffset -
+                headerHeight;
 
-                const targetId =
-                    this.getAttribute("href");
-
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
-
-
-                const target =
-                    document.querySelector(targetId);
-
-
-                if (!target) {
-                    return;
-                }
-
-
-                event.preventDefault();
-
-
-                const headerHeight =
-                    header
-                        ? header.offsetHeight
-                        : 0;
-
-
-                const targetPosition =
-                    target.getBoundingClientRect().top +
-                    window.pageYOffset -
-                    headerHeight;
-
-
-                window.scrollTo({
-
-                    top: targetPosition,
-
-                    behavior: "smooth"
-
-                });
-
-            }
-        );
-
+            window.scrollTo({
+                top: Math.max(0, targetPosition),
+                behavior: "smooth"
+            });
+        });
     });
 
-
     /* =================================================
-       7. FADE IN KHI CUỘN
+       6. REVEAL KHI LƯỚT TRANG
     ================================================= */
 
     const revealSelector = [
-
-        /* TRANG CHỦ */
-
+        /* HOME */
         ".story-container",
         ".products-header",
         ".product-card",
@@ -310,407 +230,168 @@ document.addEventListener("DOMContentLoaded", function () {
         ".contact-container",
 
         /* ABOUT */
-
         ".about-intro-container",
         ".about-value-card",
         ".about-philosophy-container",
         ".about-cta",
 
-        /* PRODUCTS */
+        /* STORY */
+        ".story-hero",
+        ".story-section",
+        ".story-time",
+        ".story-values-header",
+        ".story-value",
+        ".story-cta",
 
+        /* PRODUCTS */
         ".product-page-header",
         ".product-page-card",
+        ".products-hero-content",
+        ".products-intro-content",
+        ".product-list-header",
+        ".product-detail-card",
+        ".products-cta",
 
-        /* GOOGLE MAP */
+        /* PROCESS PAGE */
+        ".process-page-hero",
+        ".process-step",
+        ".process-message",
+        ".process-cta",
 
+        /* MAP + FOOTER */
         ".location-container",
         ".location-address",
         ".location-map",
-
-        /* FOOTER */
-
         ".footer-container"
-
     ].join(", ");
 
+    const revealElements = document.querySelectorAll(revealSelector);
 
-    const revealElements =
-        document.querySelectorAll(
-            revealSelector
-        );
+    if ("IntersectionObserver" in window) {
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
 
+                entry.target.classList.add("show");
+                observer.unobserve(entry.target);
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: "0px 0px -40px 0px"
+        });
 
-    if (
-        "IntersectionObserver" in window
-    ) {
-
-        const revealObserver =
-            new IntersectionObserver(
-                function (
-                    entries,
-                    observer
-                ) {
-
-                    entries.forEach(
-                        function (entry) {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target
-                                    .classList
-                                    .add("show");
-
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-
-                            }
-
-                        }
-                    );
-
-                },
-                {
-                    threshold: 0.12
-                }
+        revealElements.forEach((element, index) => {
+            element.classList.add("reveal");
+            element.style.setProperty(
+                "--reveal-delay",
+                `${Math.min(index % 5, 4) * 70}ms`
             );
-
-
-        revealElements.forEach(
-            function (element) {
-
-                element.classList.add(
-                    "reveal"
-                );
-
-                revealObserver.observe(
-                    element
-                );
-
-            }
-        );
-
+            revealObserver.observe(element);
+        });
     } else {
-
-        revealElements.forEach(
-            function (element) {
-
-                element.classList.add(
-                    "show"
-                );
-
-            }
-        );
-
+        revealElements.forEach(element => element.classList.add("show"));
     }
 
-
     /* =================================================
-       8. FORM LIÊN HỆ
+       7. FORM LIÊN HỆ
     ================================================= */
 
-    const contactForm =
-        document.querySelector(
-            ".contact-form form"
-        );
-
+    const contactForm = document.querySelector(".contact-form form");
 
     if (contactForm) {
-
-        contactForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                const nameInput =
-                    document.querySelector(
-                        "#name"
-                    );
-
-
-                const phoneInput =
-                    document.querySelector(
-                        "#phone"
-                    );
-
-
-                const emailInput =
-                    document.querySelector(
-                        "#email"
-                    );
-
-
-                const subjectInput =
-                    document.querySelector(
-                        "#subject"
-                    );
-
-
-                const name =
-                    nameInput
-                        ? nameInput.value.trim()
-                        : "";
-
-
-                const phone =
-                    phoneInput
-                        ? phoneInput.value.trim()
-                        : "";
-
-
-                const email =
-                    emailInput
-                        ? emailInput.value.trim()
-                        : "";
-
-
-                const subject =
-                    subjectInput
-                        ? subjectInput.value.trim()
-                        : "";
-
-
-                /* HỌ TÊN */
-
-                if (!name) {
-
-                    alert(
-                        "Vui lòng nhập họ và tên."
-                    );
-
-                    if (nameInput) {
-                        nameInput.focus();
-                    }
-
-                    return;
-
-                }
-
-
-                /* SỐ ĐIỆN THOẠI */
-
-                if (!phone) {
-
-                    alert(
-                        "Vui lòng nhập số điện thoại."
-                    );
-
-                    if (phoneInput) {
-                        phoneInput.focus();
-                    }
-
-                    return;
-
-                }
-
-
-                /* KIỂM TRA SỐ ĐIỆN THOẠI */
-
-                const normalizedPhone =
-                    phone.replace(
-                        /[\s.-]/g,
-                        ""
-                    );
-
-
-                const phonePattern =
-                    /^(0|\+84)[0-9]{9,10}$/;
-
-
-                if (
-                    !phonePattern.test(
-                        normalizedPhone
-                    )
-                ) {
-
-                    alert(
-                        "Số điện thoại chưa đúng định dạng."
-                    );
-
-                    if (phoneInput) {
-                        phoneInput.focus();
-                    }
-
-                    return;
-
-                }
-
-
-                /* EMAIL */
-
-                if (email) {
-
-                    const emailPattern =
-                        /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-
-                    if (
-                        !emailPattern.test(
-                            email
-                        )
-                    ) {
-
-                        alert(
-                            "Email chưa đúng định dạng."
-                        );
-
-                        if (emailInput) {
-                            emailInput.focus();
-                        }
-
-                        return;
-
-                    }
-
-                }
-
-
-                /* NỘI DUNG */
-
-                if (!subject) {
-
-                    alert(
-                        "Vui lòng nhập nội dung cần tư vấn."
-                    );
-
-                    if (subjectInput) {
-                        subjectInput.focus();
-                    }
-
-                    return;
-
-                }
-
-
-                /* THÔNG BÁO */
-
-                alert(
-                    "Cảm ơn bạn đã liên hệ Bách Sơn Tửu!\n\n" +
-                    "Chúng tôi sẽ liên hệ với bạn " +
-                    "trong thời gian sớm nhất."
-                );
-
-
-                contactForm.reset();
-
+        contactForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            const nameInput = document.querySelector("#name");
+            const phoneInput = document.querySelector("#phone");
+            const emailInput = document.querySelector("#email");
+            const subjectInput = document.querySelector("#subject");
+
+            const name = nameInput?.value.trim() || "";
+            const phone = phoneInput?.value.trim() || "";
+            const email = emailInput?.value.trim() || "";
+            const subject = subjectInput?.value.trim() || "";
+
+            if (!name) {
+                alert("Vui lòng nhập họ và tên.");
+                nameInput?.focus();
+                return;
             }
-        );
 
-    }
+            if (!phone) {
+                alert("Vui lòng nhập số điện thoại.");
+                phoneInput?.focus();
+                return;
+            }
 
+            const normalizedPhone = phone.replace(/[\s.-]/g, "");
+            if (!/^(0|\+84)[0-9]{9,10}$/.test(normalizedPhone)) {
+                alert("Số điện thoại chưa đúng định dạng.");
+                phoneInput?.focus();
+                return;
+            }
 
-    /* =================================================
-       9. NĂM HIỆN TẠI
-    ================================================= */
+            if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                alert("Email chưa đúng định dạng.");
+                emailInput?.focus();
+                return;
+            }
 
-    const currentYear =
-        document.querySelectorAll(
-            ".current-year"
-        );
+            if (!subject) {
+                alert("Vui lòng nhập nội dung cần tư vấn.");
+                subjectInput?.focus();
+                return;
+            }
 
-
-    currentYear.forEach(
-        function (element) {
-
-            element.textContent =
-                new Date().getFullYear();
-
-        }
-    );
-
-
-    /* =================================================
-       10. NÚT CHỈ ĐƯỜNG GOOGLE MAPS
-    ================================================= */
-
-    const directionButtons =
-        document.querySelectorAll(
-            ".direction-button"
-        );
-
-
-    directionButtons.forEach(
-        function (button) {
-
-            button.addEventListener(
-                "click",
-                function () {
-
-                    const mapUrl =
-                        this.dataset.mapUrl;
-
-
-                    if (mapUrl) {
-
-                        window.open(
-                            mapUrl,
-                            "_blank"
-                        );
-
-                        return;
-
-                    }
-
-
-                    const address =
-                        this.dataset.address;
-
-
-                    if (address) {
-
-                        const encodedAddress =
-                            encodeURIComponent(
-                                address
-                            );
-
-
-                        const url =
-                            "https://www.google.com/maps/dir/?api=1&destination=" +
-                            encodedAddress;
-
-
-                        window.open(
-                            url,
-                            "_blank"
-                        );
-
-                    }
-
-                }
+            alert(
+                "Cảm ơn bạn đã liên hệ Bách Sơn Tửu!\n\n" +
+                "Chúng tôi sẽ liên hệ với bạn trong thời gian sớm nhất."
             );
 
-        }
-    );
-
+            contactForm.reset();
+        });
+    }
 
     /* =================================================
-       11. RESIZE
+       8. GOOGLE MAPS — NÚT CHỈ ĐƯỜNG
     ================================================= */
 
-    window.addEventListener(
-        "resize",
-        function () {
+    document.querySelectorAll(".direction-button").forEach(button => {
+        button.addEventListener("click", () => {
+            const mapUrl = button.dataset.mapUrl;
+            const address = button.dataset.address;
 
-            if (window.innerWidth > 768) {
-
-                closeMobileMenu();
-
-                if (header) {
-
-                    header.classList.remove(
-                        "hide"
-                    );
-
-                }
-
+            if (mapUrl) {
+                window.open(mapUrl, "_blank", "noopener,noreferrer");
+                return;
             }
 
-        }
-    );
+            if (address) {
+                const url =
+                    "https://www.google.com/maps/dir/?api=1&destination=" +
+                    encodeURIComponent(address);
 
+                window.open(url, "_blank", "noopener,noreferrer");
+            }
+        });
+    });
+
+    /* =================================================
+       9. NĂM FOOTER
+    ================================================= */
+
+    document.querySelectorAll(".current-year").forEach(element => {
+        element.textContent = new Date().getFullYear();
+    });
+
+    /* =================================================
+       10. RESIZE
+    ================================================= */
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth > 768) {
+            closeMobileMenu();
+            header?.classList.remove("hide");
+        }
+    });
 });

@@ -48,6 +48,8 @@
     /* FONT */
     --font-main: "Montserrat", sans-serif;
 
+    --header-height: 88px;
+
 }
 
 
@@ -69,7 +71,7 @@ body {
     font-family: "Montserrat", sans-serif;
     background: var(--white);
     color: var(--text-main);
-    line-height: 1.7;
+    line-height: 1.8;
     overflow-x: hidden;
 }
 
@@ -117,17 +119,15 @@ h3 {
     font-size: 26px;
 }
 
-
 /* =====================================================
    4. CONTAINER
 ===================================================== */
 
 .container {
-    width: 92%;
-    max-width: var(--container-width);
-    margin: 0 auto;
+    width: 92%;                    /* rộng 92% */
+    max-width: 1280px;            /* nhưng không quá 1200px */
+    margin: 0 auto;                /* căn giữa */
 }
-
 
 /* =====================================================
    5. SECTION SUBTITLE
@@ -137,29 +137,35 @@ h3 {
     display: block;
     margin-bottom: 20px;
     color: var(--gold);
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 3px;
+    line-height: 1.5;
 }
-
 
 /* =====================================================
    6. HEADER
 ===================================================== */
 
 .header {
-    position: sticky;
+    position: fixed; /* cố định menu trên màn hình hiển thị */
     top: 0;
     left: 0;
     width: 100%;
     background: rgba(255, 255, 255, 0.97);
     border-bottom: 1px solid var(--border);
     z-index: 1000;
-    transition: 0.3s ease;
+    transform: translateY(0);
+    transition: transform 0.35s ease;
+    will-change: transform;
+}
+
+.header.hide {
+    transform: translateY(-110%);
 }
 
 .header-container {
-    min-height: 88px;
+    min-height: var(--header-height);
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -187,7 +193,6 @@ h3 {
 .logo:hover img {
     transform: scale(1.03);
 }
-
 
 /* =====================================================
    8. NAVIGATION
@@ -232,7 +237,6 @@ h3 {
     width: 100%;
 }
 
-
 /* =====================================================
    9. MOBILE MENU BUTTON
 ===================================================== */
@@ -257,7 +261,6 @@ h3 {
     border-color: var(--gold);
 }
 
-
 /* =====================================================
    10. MOBILE MENU
 ===================================================== */
@@ -265,7 +268,7 @@ h3 {
 .mobile-menu {
     display: none;
     position: fixed;
-    top: 88px;
+    top: var(--header-height);
     left: 0;
     width: 100%;
     background: var(--white);
@@ -326,7 +329,7 @@ h3 {
 
 .hero-line {
     position: relative;
-    width: 250px;
+    width: 180px;
     height: 2px;
     margin: 22px auto 18px;
     background: var(--gold);
@@ -361,7 +364,6 @@ h3 {
     font-size: 18px;
     line-height: 1.7;
 }
-
 
 /* =====================================================
    12. HERO BUTTON
