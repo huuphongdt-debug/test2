@@ -2,40 +2,33 @@
    ABOUT PAGE - GIỚI THIỆU
 ===================================================== */
 
-
 /* =====================================================
    1. ABOUT HERO
 ===================================================== */
 
 .about-hero {
-    min-height: 460px;
+    min-height: var(--hero-height);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 8%;
-    background: var(--brown);
+    padding: var(--hero-padding);
+    background-color: var(--cream);
     text-align: center;
-    color: #F5EEE5;
+    color: var(--cream);
 }
 
 .about-hero-content {
-    max-width: 900px;
-}
-
-.about-hero .section-subtitle {
-    color: var(--gold);
-    margin-bottom: 20px;
-}
-
-.about-hero h1 {
-    color: #F5EEE5;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 50px 20px;
 }
 
 .about-hero-line {
     position: relative;
-    width: 100px;
+    width: 180px;
     height: 2px;
-    margin: 25px auto;
+    margin: 22px auto 18px;
     background: var(--gold);
 }
 
@@ -44,41 +37,36 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     background: var(--gold);
-    transform:
-        translate(-50%, -50%)
-        rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .about-hero p {
-    max-width: 680px;
-    margin: 0 auto;
-    color: #E8DDD3;
-    font-size: 17px;
-    line-height: 1.8;
+    max-width: 800px;
+    margin: 20px auto 32px;
+    color: var(--text-main);
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.7;
 }
-
 
 /* =====================================================
    2. ABOUT INTRO
 ===================================================== */
 
 .about-intro {
-    padding: 60px 8%;
+    padding: var(--padding-section);
     background: var(--white);
 }
 
 .about-intro-container {
-    max-width: var(--container-width);
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
     align-items: center;
 }
-
 
 /* HÌNH ẢNH */
 
@@ -86,11 +74,13 @@
     width: 100%;
     height: 520px;
     overflow: hidden;
+    background-color: var(--white);
 }
 
 .about-intro-image img {
     width: 100%;
     height: 100%;
+    display: block;
     object-fit: cover;
     transition: transform 0.6s ease;
 }
@@ -99,51 +89,25 @@
     transform: scale(1.04);
 }
 
-
 /* NỘI DUNG */
 
 .about-intro-content {
-    max-width: 520px;
+    max-width: var(--content-width);
 }
-
-
-.about-line {
-    width: 250px;
-    height: 2px;
-    margin-bottom: 22px;
-    background: var(--gold);
-}
-
-.about-intro-content p {
-    margin: 0;
-    color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
 
 /* =====================================================
    3. GIÁ TRỊ CỐT LÕI
 ===================================================== */
 
 .about-values {
-    padding: 60px 8%;
+    padding: var(--padding-section);
     background: var(--cream-dark);
 }
-
 .about-values-header {
-    max-width: 750px;
-    margin: 0 auto 65px;
+    max-width: var(--header-width);
+    margin: 0 auto 60px;
     text-align: center;
 }
-
-.about-values-header p {
-    margin: 0;
-    color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
 
 /* GRID */
 
@@ -156,13 +120,12 @@
     gap: 30px;
 }
 
-
 /* CARD */
 
 .about-value-card {
     padding: 45px 30px;
     background: var(--white);
-    border: 1px solid #E5D9C9;
+    border: 1px solid var(--border-light);
     text-align: center;
     transition:
         transform 0.35s ease,
@@ -198,7 +161,6 @@
     color: var(--white);
 }
 
-
 /* SỐ */
 
 .about-value-card > span {
@@ -210,18 +172,17 @@
     letter-spacing: 2px;
 }
 
-
 /* TIÊU ĐỀ */
 
+.about-value-card h3 {
+    color: var(--brown);
+}
 
 /* MÔ TẢ */
 
 .about-value-card p {
     max-width: 300px;
     margin: 0 auto;
-    color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.8;
 }
 
 
@@ -230,13 +191,11 @@
 ===================================================== */
 
 .about-philosophy {
-    padding: 60px 8%;
+    padding: var(--padding-section);
     background: var(--white);
 }
 
 .about-philosophy-container {
-    max-width: var(--container-width);
-    margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 80px;
@@ -247,17 +206,8 @@
 /* CONTENT */
 
 .about-philosophy-content {
-    max-width: 520px;
+    max-width: var(--content-width);
 }
-
-
-.about-philosophy-content p {
-    margin-bottom: 20px;
-    color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
 
 /* IMAGE */
 
@@ -284,63 +234,16 @@
 ===================================================== */
 
 .about-cta {
-    padding: 60px 8%;
-
-    background:
-        linear-gradient(
-            rgba(59, 42, 32, 0.94),
-            rgba(59, 42, 32, 0.94)
-        );
-
+    padding: var(--padding-section);
+    background: var(--cream-dark);
     text-align: center;
 }
 
 .about-cta-content {
-    max-width: 800px;
+    max-width: var(--content-width);
     margin: 0 auto;
 }
 
 .about-cta .section-subtitle {
     color: var(--gold-light);
-}
-
-.about-cta h2 {
-    color: #F5EEE5;
-}
-
-.about-cta p {
-    max-width: 650px;
-    margin: 0 auto 35px;
-    color: #D8CBC0;
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-
-/* BUTTON */
-
-.about-cta-button {
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 15px 28px;
-    background: var(--gold);
-    color: var(--white);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: 0.3s ease;
-}
-
-.about-cta-button i {
-    transition: transform 0.3s ease;
-}
-
-.about-cta-button:hover {
-    background: var(--gold-light);
-    transform: translateY(-3px);
-}
-
-.about-cta-button:hover i {
-    transform: translateX(5px);
 }

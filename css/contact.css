@@ -1,0 +1,45 @@
+/* =====================================================
+   1. CONTACT HERO
+===================================================== */
+
+.contact-hero {
+    min-height: var(--hero-height);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--hero-padding);
+    background-color: var(--cream);
+    text-align: center;
+    color: var(--cream);
+}
+
+.contact-hero-content {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
+
+.contact-hero-line {
+    position: relative;
+    width: 120px;
+    height: 2px;
+    margin: 25px auto;
+    background: var(--gold);
+}
+
+.contact-hero-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    background: var(--gold);
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
+}
+
+.contact-hero p {
+    color: var(--text-main);
+}

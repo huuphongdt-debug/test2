@@ -3,170 +3,81 @@
    BÁCH SƠN TỬU
 ===================================================== */
 
-
 /* =====================================================
    HERO
 ===================================================== */
 
-.process-page-hero {
-
-    min-height: 520px;
+.process-hero {
+    min-height: var(--hero-height);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 60px 8%;
-    background: var(--brown);
+    padding: var(--hero-padding);
+    background-color: var(--cream);
     text-align: center;
-}
-
-
-.process-page-hero-content {
-
-    max-width: 850px;
-    margin: 0 auto;
-}
-
-
-.process-page-hero .section-subtitle {
-
-    color: var(--gold);
-    margin-bottom: 20px;
-}
-
-
-.process-page-hero h1 {
-
     color: var(--cream);
 }
 
+.process-hero-content {
+    width: 100%;
+    max-width: var(--container-width);
+    margin: 0 auto;
+}
 
 .process-hero-line {
-
-    width: 250px;
+    position: relative;
+    width: 120px;
     height: 2px;
-    margin: 28px auto;
+    margin: 25px auto;
     background: var(--gold);
 }
 
-
-.process-page-hero p {
-
-    max-width: 700px;
-    margin: 0 auto;
-    color: var(--text-muted);
-    font-size: 16px;
-    line-height: 1.8;
+.process-hero-line::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 9px;
+    height: 9px;
+    background: var(--gold);
+    transform:
+        translate(-50%, -50%)
+        rotate(45deg);
 }
 
+.process-hero p {
+    color: var(--text-main);
+}
 
 /* =====================================================
    MESSAGE
 ===================================================== */
 
 .process-message {
-
-    padding: 60px 8%;
-    background: var(--white);
+    padding: var(--padding-section);
+    background: var(--cream);
     text-align: center;
 }
 
-
 .process-message-content {
-
-    max-width: 800px;
+    max-width: var(--container-width);
     margin: 0 auto;
 }
-
-
-.process-message h2 {
-
-    color: var(--brown-dark);
-}
-
-
-.process-message p {
-
-    max-width: 700px;
-    margin: 0 auto;
-    color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-
 
 /* =====================================================
    CTA
 ===================================================== */
 
 .process-cta {
-
-    padding: 60px 8%;
-    background: var(--cream);
+    padding: var(--padding-section);
+    background: var(--cream-dark);
     text-align: center;
 }
 
 
 .process-cta-content {
-
-    max-width: 750px;
+    max-width: var(--container-width);
     margin: 0 auto;
-}
-
-
-.process-cta .section-subtitle {
-
-    color: var(--gold);
-}
-
-
-.process-cta h2 {
-
-    margin: 0 0 20px;
-
-}
-
-
-.process-cta p {
-
-    margin: 0 auto 30px;
-    color: var(--text-light);
-    font-size: 16px;
-    line-height: 1.8;
-}
-
-
-.process-cta-button {
-
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-    padding: 15px 28px;
-    background: var(--gold-dark);
-    color: var(--cream);
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    transition: 0.3s ease;
-}
-
-
-.process-cta-button:hover {
-
-    background: var(--gold);
-    transform: translateY(-2px);
-}
-
-
-.process-cta-button i {
-
-    transition: transform 0.3s ease;
-}
-
-
-.process-cta-button:hover i {
-
-    transform: translateX(5px);
 }
 
 

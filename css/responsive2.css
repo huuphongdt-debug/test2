@@ -1,9 +1,9 @@
 /* =====================================================
    BÁCH SƠN TỬU
-   RESPONSIVE CSS — CLEANED
-   Giữ nguyên hành vi hiện tại, loại bỏ các rule typography
-   bị ghi đè/lặp lại và giữ riêng các rule layout.
+   RESPONSIVE CSS — BẢN ĐÃ CHUẨN HÓA
+   Tablet / Mobile / Small Mobile
 ===================================================== */
+
 /* =====================================================
    0. NỀN TẢNG RESPONSIVE + HIỆU ỨNG CHUNG
 ===================================================== */
@@ -209,6 +209,11 @@ img {
     .story-image {
         height: 450px;
     }
+
+    .story-content h2 {
+        font-size: 36px;
+    }
+
     .story-reverse {
         grid-template-columns: 1fr;
     }
@@ -224,6 +229,11 @@ img {
     .products {
         padding: 80px 6%;
     }
+
+    .products-header h2 {
+        font-size: 38px;
+    }
+
     .products-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 20px;
@@ -249,6 +259,11 @@ img {
     .process-header {
         margin-bottom: 70px;
     }
+
+    .process-header h2 {
+        font-size: 42px;
+    }
+
     .process-item {
         padding: 0 12px;
     }
@@ -284,6 +299,11 @@ img {
     .gallery {
         padding: 80px 6%;
     }
+
+    .gallery-header h2 {
+        font-size: 38px;
+    }
+
     .gallery-grid {
         grid-template-rows: 220px 220px;
         gap: 12px;
@@ -297,6 +317,11 @@ img {
     .contact-container {
         gap: 50px;
     }
+
+    .contact-info h2 {
+        font-size: 36px;
+    }
+
     .contact-form {
         padding: 35px;
     }
@@ -309,6 +334,11 @@ img {
     .location-header {
         margin-bottom: 40px;
     }
+
+    .location-header h2 {
+        font-size: 38px;
+    }
+
     .location-header p {
         font-size: 15px;
     }
@@ -359,6 +389,12 @@ img {
     .products-cta {
         padding: 80px 6%;
     }
+
+    .products-intro-content h2,
+    .product-list-header h2 {
+        font-size: 38px;
+    }
+
     .product-list-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
         gap: 25px;
@@ -414,7 +450,13 @@ img {
         width: 100%;
         min-width: 0;
     }
-.about-values-grid {
+
+    .about-intro-content h2,
+    .about-philosophy-content h2 {
+        font-size: 37px;
+    }
+
+    .about-values-grid {
         display: grid;
         grid-template-columns: repeat(3, minmax(0, 1fr));
         gap: 20px;
@@ -454,13 +496,12 @@ img {
 
 @media (max-width: 768px) {
 
-    /* Tất cả tiêu đề màu vàng nhỏ giống nhau */
     .section-subtitle {
         font-size: 11px !important;
         letter-spacing: 2px !important;
     }
 
-    /* Hero trang chủ */
+        /* Hero của tất cả TRANG CON giống nhau */
     h1 {
         font-size: 40px !important;
         line-height: 1.15 !important;
@@ -614,6 +655,11 @@ img {
         margin: 0;
     }
 
+    .story-content h2 {
+        font-size: 34px;
+        line-height: 1.25;
+        margin-bottom: 22px;
+    }
 
     .story-content p {
         font-size: 14px;
@@ -643,6 +689,10 @@ img {
         text-align: center;
     }
 
+    .story-values-header h2 {
+        font-size: 34px;
+        line-height: 1.2;
+    }
 
     .story-values-grid {
         width: 100%;
@@ -687,6 +737,10 @@ img {
         margin-bottom: 45px;
     }
 
+    .products-header h2 {
+        font-size: 36px;
+        line-height: 1.25;
+    }
 
     .products-header p {
         font-size: 14px;
@@ -734,6 +788,10 @@ img {
         margin-bottom: 60px;
     }
 
+    .process-header h2 {
+        font-size: 36px;
+        line-height: 1.2;
+    }
 
     .process-header p {
         font-size: 14px;
@@ -804,6 +862,10 @@ img {
         margin-bottom: 40px;
     }
 
+    .gallery-header h2 {
+        font-size: 36px;
+        line-height: 1.25;
+    }
 
     .gallery-header p {
         font-size: 14px;
@@ -835,6 +897,10 @@ img {
         max-width: 100%;
     }
 
+    .contact-info h2 {
+        font-size: 34px;
+        line-height: 1.25;
+    }
 
     .contact-info > p {
         font-size: 14px;
@@ -863,6 +929,10 @@ img {
         margin-bottom: 35px;
     }
 
+    .location-header h2 {
+        font-size: 34px;
+        line-height: 1.25;
+    }
 
     .location-header p {
         font-size: 14px;
@@ -973,6 +1043,11 @@ img {
         width: 100%;
     }
 
+    .products-intro-content h2,
+    .product-list-header h2 {
+        font-size: 32px;
+        line-height: 1.25;
+    }
 
     .products-intro-content p {
         font-size: 14px;
@@ -1038,6 +1113,10 @@ img {
         padding: 70px 20px;
     }
 
+    .products-cta h2 {
+        font-size: 34px;
+        line-height: 1.25;
+    }
 
     .products-cta p {
         font-size: 14px;
@@ -1165,11 +1244,9 @@ img {
         padding: 70px 20px;
     }
 
-    /* PRODUCTS PAGE */
-
-    .products-hero p {
-        padding: 0px 20px;
-        font-size: 15px;
+    .about-cta h2 {
+        font-size: 34px;
+        line-height: 1.25;
     }
 
     /* STORY PAGE */
@@ -1183,7 +1260,6 @@ img {
     }
 
     .story-hero p {
-        padding: 0px 20px;
         font-size: 15px;
     }
 
@@ -1192,6 +1268,11 @@ img {
         padding: 80px 20px;
     }
 
+    .story-time h2,
+    .story-values-header h2,
+    .story-cta h2 {
+        font-size: 36px;
+    }
 
     .story-values-grid {
         grid-template-columns: 1fr !important;
@@ -1205,15 +1286,20 @@ img {
         padding: 60px 20px;
     }
 
-    /* PROCESS PAGE */
-    .process-hero {
+    /* PROCESS PAGE — MOBILE */
+    .process-page-hero {
         min-height: 420px;
         padding: 70px 20px;
     }
 
-    .process-hero p {
-        padding: 0px 20px;
-        font-size: 15px;
+    .process-page-hero h1 {
+        font-size: 42px;
+        line-height: 1.15;
+    }
+
+    .process-page-hero p {
+        font-size: 14px;
+        line-height: 1.7;
     }
 
     .process-detail {
@@ -1270,33 +1356,16 @@ img {
         padding: 70px 20px;
     }
 
+    .process-message h2,
+    .process-cta h2 {
+        font-size: 35px;
+        line-height: 1.25;
+    }
 
     .process-message p,
     .process-cta p {
         font-size: 14px;
         line-height: 1.8;
-    }
-
-    /* GALLERY PAGE */
-
-    .gallery-hero {
-        min-height: 330px;
-        padding: 70px 20px 60px;
-    }
-
-    .gallery-hero-content {
-        width: 100%;
-    }
-
-    .gallery-hero h1 {
-        font-size: 38px;
-        line-height: 1.15;
-    }
-
-    .gallery-hero p {
-        font-size: 14px;
-        line-height: 1.7;
-        margin-top: 20px;
     }
 }
 
@@ -1306,40 +1375,35 @@ img {
 
 @media (max-width: 480px) {
 
-/* =====================================================
-   BÁCH SƠN TỬU
-   TINH HOA ĐẠI NGÀN - Ủ VỊ THỜI GIAN
-   MAIN STYLE
-===================================================== */
-
-    .about-hero p,
-    .products-hero p,
-    .product-detail-hero p,
-    .story-hero p,
-    .process-hero p,
-    .gallery-hero p,
-    .contact-hero p {
-        font-size: 16px;
-        line-height: 1.8;
+    .section-subtitle {
+        font-size: 10px !important;
+        letter-spacing: 1.8px !important;
     }
 
-    /* Tiêu đề nhỏ màu vàng */
-    .section-subtitle {
-        font-size: 13px;
-        letter-spacing: 1.5px;
-        line-height: 1.8;
+        /* Hero trang con */
+    h1 {
+        font-size: 34px !important;
+        line-height: 1.15 !important;
+    }
+
+    .products-hero p,
+    .about-hero p,
+    .story-hero p,
+    .process-page-hero p {
+        font-size: 13px !important;
+        line-height: 1.8 !important;
     }
 
     /* Section title */
     h2 {
-        font-size: 31px;
-        line-height: 1.25;
+        font-size: 31px !important;
+        line-height: 1.25 !important;
     }
 
     /* Card title */
     h3 {
-        font-size: 21px;
-        line-height: 1.35;
+        font-size: 21px !important;
+        line-height: 1.35 !important;
     }
 
     /* Body text */
@@ -1349,7 +1413,6 @@ img {
     .gallery-header p,
     .contact-info > p,
     .location-header p,
-    .location-address p,
     .about-intro-content p,
     .about-philosophy-content p,
     .about-value-card p,
@@ -1390,36 +1453,23 @@ img {
     }
 
     .hero-content {
-        padding: 60px 18px;
+        padding: 50px 10px;
     }
 
     .hero h1 {
-        font-size: 38px !important;
+        font-size: 38px;
     }
 
     .hero-slogan {
-        font-size: 13px;
+        font-size: 11px;
         letter-spacing: 1.5px;
     }
 
     .hero-description {
-        font-size: 16px !important;
-        line-height: 1.8 !important;
+        font-size: 13px;
     }
 
-    .hero-button,
-    .view-all-button,
-    .about-button,
-    .about-cta-button,
-    .products-cta-button,
-    .story-button,
-    .story-cta-button,
-    .process-button,
-    .process-cta-button,
-    .gallery-button,
-    .gallery-cta-button,
-    .contact-button,
-    .contact-cta-button {
+    .hero-button {
         padding: 11px 17px;
         font-size: 11px;
     }
@@ -1434,13 +1484,40 @@ img {
         height: 330px;
     }
 
+    .section-subtitle {
+        font-size: 11px;
+        letter-spacing: 2px;
+    }
+
+    .story-content h2 {
+        font-size: 30px;
+    }
+
+    .story-content p {
+        font-size: 13px;
+    }
+
     .story-time,
     .story-values {
         padding: 60px 18px;
     }
 
+    .story-values-header h2,
+    .story-time h2,
+    .story-cta h2 {
+        font-size: 32px;
+    }
+
     .story-value {
         padding: 30px 20px;
+    }
+
+    .story-value h3 {
+        font-size: 23px;
+    }
+
+    .story-value p {
+        font-size: 13px;
     }
 
     /* PRODUCTS */
@@ -1448,17 +1525,29 @@ img {
         padding: 60px 18px;
     }
 
+    .products-header h2 {
+        font-size: 31px;
+    }
+
     .product-image {
-        height: 330px;
+        height: 380px;
     }
 
     .product-info {
         padding: 22px 20px 25px;
     }
 
+    .product-info h3 {
+        font-size: 24px;
+    }
+
     /* PROCESS HOME */
     .process {
         padding: 60px 18px;
+    }
+
+    .process-header h2 {
+        font-size: 31px;
     }
 
     .process-item {
@@ -1479,14 +1568,26 @@ img {
         height: calc(100% - 60px);
     }
 
+    .process-content h3 {
+        font-size: 19px;
+    }
+
+    .process-content p {
+        font-size: 12px;
+    }
+
     /* GALLERY */
     .gallery {
         padding: 60px 18px;
     }
 
+    .gallery-header h2 {
+        font-size: 31px;
+    }
+
     .gallery-grid {
         grid-template-columns: 1fr;
-        grid-template-rows: 260px 260px 260px 260px 260px;
+        grid-template-rows: 260px 200px 200px 200px 200px;
     }
 
     .gallery-large {
@@ -1498,6 +1599,10 @@ img {
         padding: 60px 18px;
     }
 
+    .contact-info h2 {
+        font-size: 30px;
+    }
+
     .contact-form {
         padding: 25px 20px;
     }
@@ -1505,6 +1610,14 @@ img {
     /* LOCATION */
     .location {
         padding: 60px 18px;
+    }
+
+    .location-header h2 {
+        font-size: 30px;
+    }
+
+    .location-header p {
+        font-size: 13px;
     }
 
     .location-map {
@@ -1526,6 +1639,10 @@ img {
         font-size: 15px;
     }
 
+    .location-address p {
+        font-size: 12px;
+    }
+
     .location-direction-button {
         padding: 13px 16px;
         font-size: 11px;
@@ -1533,7 +1650,7 @@ img {
 
     /* FOOTER */
     .footer {
-        padding: 60px 18px 0;
+        padding: 50px 18px 0;
     }
 
     .footer-container {
@@ -1549,16 +1666,68 @@ img {
         padding: 20px 0;
     }
 
-    .footer h3 {
-        font-size: 16px !important;
+    /* PRODUCTS PAGE */
+    .products-hero {
+        min-height: 300px;
+        padding: 60px 18px 50px;
     }
 
-/* =====================================================
-   ABOUT PAGE - GIỚI THIỆU
-===================================================== */
+    .products-hero h1 {
+        font-size: 34px;
+    }
 
+    .products-hero p {
+        font-size: 13px;
+    }
+
+    .products-intro,
+    .product-list-section {
+        padding: 55px 18px;
+    }
+
+    .products-intro-content h2,
+    .product-list-header h2 {
+        font-size: 29px;
+    }
+
+    .product-list-grid {
+        gap: 25px;
+    }
+
+    .product-detail-image {
+        height: 350px;
+    }
+
+    .product-detail-content {
+        padding: 23px 20px 26px;
+    }
+
+    .product-detail-content h3 {
+        font-size: 23px;
+    }
+
+    .products-cta {
+        padding: 60px 18px;
+    }
+
+    .products-cta h2 {
+        font-size: 30px;
+    }
+
+    /* ABOUT */
     .about-hero {
-        min-height: 480px !important;
+        min-height: 330px;
+        padding: 50px 18px;
+    }
+
+    .about-hero h1 {
+        font-size: 36px;
+    }
+
+    .about-intro,
+    .about-values,
+    .about-philosophy {
+        padding: 60px 18px !important;
     }
 
     .about-intro-container,
@@ -1571,16 +1740,18 @@ img {
         height: 330px !important;
     }
 
-    .about-hero,
-    .about-intro,
-    .about-values,
-    .about-philosophy,
-    .about-cta {
-        padding: 60px 18px !important;
+    .about-intro-content h2,
+    .about-philosophy-content h2 {
+        font-size: 30px !important;
+    }
+
+    .about-intro-content p,
+    .about-philosophy-content p {
+        font-size: 13px !important;
     }
 
     .about-values-grid {
-        gap: 15px !important;
+        gap: 20px !important;
     }
 
     .about-value-card {
@@ -1588,97 +1759,66 @@ img {
     }
 
     .about-value-icon {
-        width: 60px !important;
-        height: 60px !important;
+        width: 70px !important;
+        height: 70px !important;
         font-size: 24px !important;
     }
 
-/* =====================================================
-   PRODUCTS PAGE - SẢN PHẨM BÁCH SƠN TỬU
-===================================================== */
-    .products-hero {
-        min-height: 480px !important;
+    .about-value-card h3 {
+        font-size: 23px !important;
     }
 
-    .products-intro,
-    .product-list-section,
-    .products-cta {
-        padding: 60px 18px !important;
+    .about-value-card p {
+        font-size: 13px !important;
     }
 
-    .product-list-grid {
-        gap: 25px !important;
+    .about-cta {
+        padding: 60px 18px;
     }
 
-    .product-detail-image {
-        height: 330px !important;
+    .about-cta h2 {
+        font-size: 30px;
     }
 
-    .product-detail-content {
-        gap: 35px !important;
+    /* PROCESS PAGE */
+    .process-page-hero {
+        min-height: 350px;
+        padding: 55px 18px;
     }
 
-/* =====================================================
-   STORY PAGE - CÂU CHUYỆN
-===================================================== */
-
-    .story-hero {
-        min-height: 480px !important;
+    .process-page-hero h1 {
+        font-size: 36px;
     }
 
-    .story-section .story-origin,
-    .story-section .story-material,
-    .story-section .story-people,
-    .story-time,
-    .story-values,
-    .story-cta {
-        padding: 60px 18px !important;
+    .process-detail {
+        padding: 60px 18px;
     }
 
-    .story-values-grid {
-        gap: 15px !important;
+    .process-step {
+        padding: 28px 20px;
     }
 
-    .story-value-card {
-        padding: 30px 20px !important;
+    .process-step-icon {
+        width: 78px;
+        height: 78px;
+        font-size: 25px;
     }
 
-    .story-value-icon {
-        width: 60px !important;
-        height: 60px !important;
-        font-size: 24px !important;
+    .process-step-content h2 {
+        font-size: 27px;
     }
 
-/* =====================================================
-   PROCESS PAGE - QUY TRÌNH
-===================================================== */
-
-    .process-hero {
-        min-height: 480px !important;
+    .process-step-content p {
+        font-size: 13px;
     }
 
-    .process-header,
     .process-message,
     .process-cta {
-        padding: 60px 18px !important;
+        padding: 60px 18px;
     }
 
-/* =====================================================
-   GALLERY PAGE - QUY TRÌNH
-===================================================== */
-
-    .gallery-hero {
-        min-height: 480px !important;
-        padding: 60px 18px !important;
-    }
-
-/* =====================================================
-   CONTACT PAGE - QUY TRÌNH
-===================================================== */
-
-    .contact-hero {
-        min-height: 480px !important;
-        padding: 60px 18px !important;
+    .process-message h2,
+    .process-cta h2 {
+        font-size: 31px;
     }
 }
-
