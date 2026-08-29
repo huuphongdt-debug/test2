@@ -7,7 +7,8 @@
 ===================================================== */
 
 .about-hero {
-    min-height: var(--hero-height);
+    margin-top: 88px;
+    min-height: var(--hero-height2);
     display: flex;
     align-items: center;
     justify-content: center;

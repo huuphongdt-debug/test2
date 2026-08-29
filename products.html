@@ -38,6 +38,23 @@
                 <a href="gallery.html">Thư viện</a>
                 <a href="contact.html">Liên hệ</a>
             </nav>
+            <!-- GIỎ HÀNG -->
+            <a
+                href="cart.html"
+                class="cart-link"
+                aria-label="Giỏ hàng"
+            >
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span
+                class="cart-count"
+
+            >
+                0
+            </span>
+
+            </a>
             <!-- MENU MOBILE -->
             <button class="menu-toggle">
                 <i class="fa-solid fa-bars"></i>
@@ -140,219 +157,15 @@
 
 <section class="product-list-section">
 
-    <div class="product-list-header">
-
-        <span class="section-subtitle">
-            KHÁM PHÁ SẢN PHẨM
-        </span>
-
-        <h2>
-            Những hương vị đặc trưng
-        </h2>
-
-    </div>
-
-
-    <div class="product-list-grid">
-
-
-        <!-- =========================
-             PRODUCT 1
-        ========================== -->
-
-        <article class="product-detail-card">
-
-            <div class="product-detail-image">
-
-                <img
-                    src="images/products/product-1.jpg"
-                    alt="Rượu Sim Bách Sơn Tửu"
-                >
-
-                <span class="product-detail-tag">
-                    MUA NHIỀU
-                </span>
-
-            </div>
-
-
-            <div class="product-detail-content">
-
-                <span class="product-category">
-                    RƯỢU ĐẶC SẢN
-                </span>
-
-                <h3>
-                    Rượu Sim
-                </h3>
-
-                <p>
-                    Hương vị đặc trưng từ những trái sim
-                    được tuyển chọn kỹ lưỡng, mang đến
-                    sắc màu và dư vị riêng của sản vật tự nhiên.
-                </p>
-
-
-                <div class="product-detail-meta">
-
-                    <span>
-                        <i class="fa-solid fa-leaf"></i>
-                        Nguyên liệu tự nhiên
-                    </span>
-
-                    <span>
-                        <i class="fa-solid fa-clock"></i>
-                        Ủ theo thời gian
-                    </span>
-
-                </div>
-
-
-                <a
-                    href="#"
-                    class="product-detail-button"
-                >
-                    XEM CHI TIẾT
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- =========================
-             PRODUCT 2
-        ========================== -->
-
-        <article class="product-detail-card">
-
-            <div class="product-detail-image">
-
-                <img
-                    src="images/products/product-2.jpg"
-                    alt="Rượu truyền thống Bách Sơn Tửu"
-                >
-
-            </div>
-
-
-            <div class="product-detail-content">
-
-                <span class="product-category">
-                    BÁCH SƠN TỬU
-                </span>
-
-                <h3>
-                    Rượu truyền thống
-                </h3>
-
-                <p>
-                    Hương vị mộc mạc, đậm đà được tạo nên
-                    từ quá trình ủ và chắt lọc theo thời gian,
-                    giữ lại nét đặc trưng của phương thức truyền thống.
-                </p>
-
-
-                <div class="product-detail-meta">
-
-                    <span>
-                        <i class="fa-solid fa-fire"></i>
-                        Nấu thủ công
-                    </span>
-
-                    <span>
-                        <i class="fa-solid fa-clock"></i>
-                        Ủ & ngâm
-                    </span>
-
-                </div>
-
-
-                <a
-                    href="#"
-                    class="product-detail-button"
-                >
-                    XEM CHI TIẾT
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
-
-        <!-- =========================
-             PRODUCT 3
-        ========================== -->
-
-        <article class="product-detail-card">
-
-            <div class="product-detail-image">
-
-                <img
-                    src="images/products/product-3.jpg"
-                    alt="Dòng sản phẩm đặc biệt Bách Sơn Tửu"
-                >
-
-            </div>
-
-
-            <div class="product-detail-content">
-
-                <span class="product-category">
-                    TINH HOA NÚI RỪNG
-                </span>
-
-                <h3>
-                    Dòng sản phẩm đặc biệt
-                </h3>
-
-                <p>
-                    Những hương vị mang dấu ấn riêng,
-                    được tạo nên từ nguồn nguyên liệu tự nhiên
-                    và quá trình hoàn thiện kỹ lưỡng.
-                </p>
-
-
-                <div class="product-detail-meta">
-
-                    <span>
-                        <i class="fa-solid fa-mountain"></i>
-                        Sản vật vùng đất
-                    </span>
-
-                    <span>
-                        <i class="fa-solid fa-wine-bottle"></i>
-                        Dòng đặc biệt
-                    </span>
-
-                </div>
-
-
-                <a
-                    href="#"
-                    class="product-detail-button"
-                >
-                    XEM CHI TIẾT
-
-                    <i class="fa-solid fa-arrow-right"></i>
-
-                </a>
-
-            </div>
-
-        </article>
-
+    <div class="container">
+
+        <div class="product-grid">
+            <!-- JavaScript tự tạo sản phẩm ở đây -->
+        </div>
 
     </div>
 
 </section>
-
 
 <!-- =====================================================
      CTA
@@ -577,8 +390,10 @@
 
     <!-- JAVASCRIPT -->
 
+    <script src="js/product-api.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/cart.js"></script>
     <script src="js/script.js"></script>
-
 
 </body>
 

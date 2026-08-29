@@ -8,7 +8,8 @@
 ===================================================== */
 
 .process-hero {
-    min-height: var(--hero-height);
+    margin-top: 88px;
+    min-height: var(--hero-height2);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,15 +21,16 @@
 
 .process-hero-content {
     width: 100%;
-    max-width: var(--container-width);
+    max-width: 1100px;
     margin: 0 auto;
+    padding: 50px 20px;
 }
 
 .process-hero-line {
     position: relative;
-    width: 120px;
+    width: 180px;
     height: 2px;
-    margin: 25px auto;
+    margin: 22px auto 18px;
     background: var(--gold);
 }
 
@@ -37,16 +39,19 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    width: 9px;
-    height: 9px;
+    width: 10px;
+    height: 10px;
     background: var(--gold);
-    transform:
-        translate(-50%, -50%)
-        rotate(45deg);
+    transform: translate(-50%, -50%) rotate(45deg);
 }
 
 .process-hero p {
+    max-width: 800px;
+    margin: 20px auto 32px;
     color: var(--text-main);
+    text-align: center;
+    font-size: 18px;
+    line-height: 1.7;
 }
 
 /* =====================================================

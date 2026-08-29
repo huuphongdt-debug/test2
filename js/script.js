@@ -395,3 +395,29 @@ if (header) {
         }
     });
 });
+/* =====================================================
+   ĐỒNG BỘ GIỎ HÀNG GIỮA CÁC TRANG
+===================================================== */
+
+window.addEventListener("storage", function (event) {
+
+    if (event.key !== "cart") {
+        return;
+    }
+
+    /* Cập nhật số lượng trên header */
+
+    if (typeof updateCartCount === "function") {
+        updateCartCount();
+    }
+
+    /* Nếu đang ở trang Cart thì render lại */
+
+    if (
+        typeof renderCart === "function" &&
+        typeof loadCart === "function"
+    ) {
+        loadCart();
+    }
+
+});
