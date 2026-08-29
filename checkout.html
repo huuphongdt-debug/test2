@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Đặt hàng | Bách Sơn Tửu</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/responsive.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/checkout.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="container header-container">
+
+        <!-- LOGO -->
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+
+            <img
+                src="images/logo/logo-main.png"
+                alt="Bách Sơn Tửu"
+            >
+
+        </a>
+
+
+        <!-- MENU -->
+
+        <nav class="navbar">
+
+            <a href="index.html">
+                Trang chủ
+            </a>
+
+            <a href="about.html">
+                Giới thiệu
+            </a>
+
+            <a href="products.html">
+                Sản phẩm
+            </a>
+
+            <a href="story.html">
+                Câu chuyện
+            </a>
+
+            <a href="process.html">
+                Quy trình
+            </a>
+
+            <a href="gallery.html">
+                Thư viện
+            </a>
+
+            <a href="contact.html">
+                Liên hệ
+            </a>
+
+        </nav>
+
+
+        <!-- GIỎ HÀNG -->
+
+        <a
+            href="cart.html"
+            class="cart-link"
+            aria-label="Giỏ hàng"
+        >
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span class="cart-count">
+                0
+            </span>
+
+        </a>
+
+
+        <!-- MOBILE -->
+
+        <button class="menu-toggle">
+
+            <i class="fa-solid fa-bars"></i>
+
+        </button>
+
+    </div>
+
+</header>
+
+
+<!-- MOBILE MENU -->
+
+<div class="mobile-menu">
+
+    <a href="index.html">
+        Trang chủ
+    </a>
+
+    <a href="about.html">
+        Giới thiệu
+    </a>
+
+    <a href="products.html">
+        Sản phẩm
+    </a>
+
+    <a href="story.html">
+        Câu chuyện
+    </a>
+
+    <a href="process.html">
+        Quy trình
+    </a>
+
+    <a href="gallery.html">
+        Thư viện
+    </a>
+
+    <a href="contact.html">
+        Liên hệ
+    </a>
+
+</div>
+
+
+
+<!-- =====================================================
+     CHECKOUT HERO
+===================================================== -->
+
+<section class="checkout-hero">
+
+    <div class="checkout-hero-content">
+
+        <span class="section-subtitle">
+            BÁCH SƠN TỬU
+        </span>
+
+        <h1>
+            Đặt hàng
+        </h1>
+
+        <div class="checkout-hero-line"></div>
+
+        <p>
+            Vui lòng điền thông tin để chúng tôi
+            có thể liên hệ và xác nhận đơn hàng.
+        </p>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     CHECKOUT
+===================================================== -->
+
+<section class="checkout-section">
+
+    <div class="checkout-container">
+
+
+        <!-- =================================================
+             THÔNG TIN KHÁCH HÀNG
+        ================================================== -->
+
+        <div class="checkout-form">
+
+            <div class="checkout-heading">
+
+                <span class="section-subtitle">
+                    THÔNG TIN NHẬN HÀNG
+                </span>
+
+                <h2>
+                    Thông tin khách hàng
+                </h2>
+
+            </div>
+
+
+            <form id="checkoutForm">
+
+
+                <!-- HỌ TÊN -->
+
+                <div class="form-group">
+
+                    <label for="customerName">
+                        Họ và tên
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="text"
+                        id="customerName"
+                        name="customerName"
+                        placeholder="Nhập họ và tên"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- SỐ ĐIỆN THOẠI -->
+
+                <div class="form-group">
+
+                    <label for="customerPhone">
+                        Số điện thoại
+                        <span>*</span>
+                    </label>
+
+                    <input
+                        type="tel"
+                        id="customerPhone"
+                        name="customerPhone"
+                        placeholder="Nhập số điện thoại"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- ĐỊA CHỈ -->
+
+                <div class="form-group">
+
+                    <label for="customerAddress">
+                        Địa chỉ nhận hàng
+                        <span>*</span>
+                    </label>
+
+                    <textarea
+                        id="customerAddress"
+                        name="customerAddress"
+                        rows="4"
+                        placeholder="Nhập địa chỉ nhận hàng"
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <!-- GHI CHÚ -->
+
+                <div class="form-group">
+
+                    <label for="orderNote">
+                        Ghi chú đơn hàng
+                    </label>
+
+                    <textarea
+                        id="orderNote"
+                        name="orderNote"
+                        rows="3"
+                        placeholder="Ví dụ: Giao giờ hành chính..."
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="place-order-button"
+                >
+
+                    XÁC NHẬN ĐẶT HÀNG
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TÓM TẮT ĐƠN HÀNG
+        ================================================== -->
+
+        <aside class="checkout-summary">
+
+            <div class="checkout-heading">
+
+                <span class="section-subtitle">
+                    ĐƠN HÀNG
+                </span>
+
+                <h2>
+                    Sản phẩm của bạn
+                </h2>
+
+            </div>
+
+
+            <!-- SẢN PHẨM -->
+
+            <div
+                class="checkout-items"
+                id="checkoutItems"
+            >
+
+                <!-- JavaScript hiển thị -->
+
+            </div>
+
+
+            <!-- TỔNG -->
+
+            <div class="checkout-summary-line"></div>
+
+
+            <div class="checkout-summary-row">
+
+                <span>
+                    Tạm tính
+                </span>
+
+                <strong
+                    class="checkout-subtotal"
+                >
+                    0đ
+                </strong>
+
+            </div>
+
+
+            <div class="checkout-summary-row">
+
+                <span>
+                    Phí vận chuyển
+                </span>
+
+                <strong
+                    class="checkout-shipping"
+                >
+                    Tính khi đặt hàng
+                </strong>
+
+            </div>
+
+
+            <div class="checkout-summary-line"></div>
+
+
+            <div class="checkout-total">
+
+                <span>
+                    Tổng cộng
+                </span>
+
+                <strong
+                    class="checkout-total-price"
+                >
+                    0đ
+                </strong>
+
+            </div>
+
+
+            <a
+                href="cart.html"
+                class="back-to-cart"
+            >
+
+                <i class="fa-solid fa-arrow-left"></i>
+
+                QUAY LẠI GIỎ HÀNG
+
+            </a>
+
+        </aside>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+
+            <a
+                href="index.html"
+                class="footer-logo"
+            >
+                BÁCH SƠN TỬU
+            </a>
+
+            <p>
+                Hương vị được tạo nên từ sản vật tự nhiên,
+                bàn tay con người và sự kiên nhẫn của thời gian.
+            </p>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                KHÁM PHÁ
+            </h3>
+
+            <ul>
+
+                <li>
+                    <a href="index.html">
+                        Trang chủ
+                    </a>
+                </li>
+
+                <li>
+                    <a href="about.html">
+                        Giới thiệu
+                    </a>
+                </li>
+
+                <li>
+                    <a href="products.html">
+                        Sản phẩm
+                    </a>
+                </li>
+
+                <li>
+                    <a href="story.html">
+                        Câu chuyện
+                    </a>
+                </li>
+
+                <li>
+                    <a href="process.html">
+                        Quy trình
+                    </a>
+                </li>
+
+                <li>
+                    <a href="gallery.html">
+                        Thư viện
+                    </a>
+                </li>
+
+                <li>
+                    <a href="contact.html">
+                        Liên hệ
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-column">
+
+            <h3>
+                LIÊN HỆ
+            </h3>
+
+            <div class="footer-contact">
+
+                <p>
+                    <span>Điện thoại</span>
+                    0965 614 191
+                </p>
+
+                <p>
+                    <span>Email</span>
+                    contact@bachsontuu.vn
+                </p>
+
+                <p>
+                    <span>Địa chỉ</span>
+                    Cơ sở ngâm rượu: Bánh canh A Lâm
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            ©
+            <span class="current-year"></span>
+            BÁCH SƠN TỬU.
+            All rights reserved.
+        </p>
+
+        <p>
+            Thưởng thức có trách nhiệm.
+        </p>
+
+    </div>
+
+</footer>
+
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script src="js/product-api.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/script.js"></script>
+<script src="js/checkout.js"></script>
+
+
+</body>
+
+</html>

@@ -732,6 +732,47 @@ function addCartEvents() {
 
 }
 
+/* =====================================================
+   THÔNG BÁO THÊM VÀO GIỎ HÀNG
+===================================================== */
+
+function showCartNotification(productName) {
+
+    const oldNotification =
+        document.querySelector(".cart-notification");
+
+    if (oldNotification) {
+        oldNotification.remove();
+    }
+
+    const notification =
+
+        document.createElement("div");
+
+    notification.className =
+        "cart-notification";
+
+    notification.innerHTML = `
+        <i class="fa-solid fa-circle-check"></i>
+
+        <span>
+            Đã thêm <strong>${productName}</strong>
+            vào giỏ hàng
+        </span>
+    `;
+
+    document.body.appendChild(notification);
+
+    setTimeout(function () {
+
+        notification.classList.add("hide");
+
+        setTimeout(function () {
+            notification.remove();
+        }, 300);
+
+    }, 2500);
+}
 
 /* =====================================================
    THÊM SẢN PHẨM VÀO GIỎ
