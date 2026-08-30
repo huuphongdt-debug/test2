@@ -18,7 +18,7 @@ let checkoutCart = [];
 ===================================================== */
 
 const ORDER_API_URL =
-    "https://script.google.com/macros/s/AKfycbzg8M1Q-2GtK9Noe_IuvYwMehzPYOwyTeUfNWHUTKdl0bF4m0lq4auEpQRzjbgGXbJl/exec";
+    "https://script.google.com/macros/s/AKfycbyr_zxBVmIooNneOOjL6PLssyJy1tRnGA3fyfEysMC7RzZ1A2yxPkzT-HvIWtveQXAe/exec";
 
 
 /* =====================================================
@@ -89,6 +89,10 @@ function renderCheckoutItems() {
     container.innerHTML = "";
 
 
+    /* =============================================
+       GIỎ HÀNG TRỐNG
+    ============================================= */
+
     if (
         checkoutCart.length === 0
     ) {
@@ -111,15 +115,22 @@ function renderCheckoutItems() {
     let subtotal = 0;
 
 
+    /* =============================================
+       HIỂN THỊ TỪNG SẢN PHẨM
+    ============================================= */
+
     checkoutCart.forEach(
         function (cartItem) {
+
 
             const product =
                 checkoutProducts.find(
                     function (item) {
 
-                        return String(item.id).trim() ===
-                               String(cartItem.id).trim();
+                        return (
+                            String(item.id).trim() ===
+                            String(cartItem.id).trim()
+                        );
 
                     }
                 );
@@ -160,7 +171,8 @@ function renderCheckoutItems() {
                 price * quantity;
 
 
-            subtotal += itemTotal;
+            subtotal +=
+                itemTotal;
 
 
             const item =
@@ -190,6 +202,18 @@ function renderCheckoutItems() {
                     <h3 class="checkout-item-name">
                         ${product.name || ""}
                     </h3>
+
+
+                    ${
+                        product.volume
+                            ? `
+                                <span class="checkout-item-volume">
+                                    ${product.volume}
+                                </span>
+                              `
+                            : ""
+                    }
+
 
                     <span class="checkout-item-quantity">
                         Số lượng: ${quantity}
@@ -259,7 +283,8 @@ function updateCheckoutTotal(
 
         totalElement.textContent =
             formatPrice(
-                subtotal + shipping
+                subtotal +
+                shipping
             );
 
     }
@@ -354,7 +379,7 @@ function createOrderData() {
 
     const noteElement =
         document.querySelector(
-            "#customerNote"
+            "#orderNote"
         );
 
 
@@ -383,7 +408,7 @@ function createOrderData() {
 
 
     /* =============================================
-       KIỂM TRA THÔNG TIN
+       KIỂM TRA HỌ TÊN
     ============================================= */
 
     if (!name) {
@@ -392,14 +417,22 @@ function createOrderData() {
             "Vui lòng nhập họ và tên."
         );
 
+
         if (nameElement) {
+
             nameElement.focus();
+
         }
+
 
         return null;
 
     }
 
+
+    /* =============================================
+       KIỂM TRA SỐ ĐIỆN THOẠI
+    ============================================= */
 
     if (!phone) {
 
@@ -407,29 +440,43 @@ function createOrderData() {
             "Vui lòng nhập số điện thoại."
         );
 
+
         if (phoneElement) {
+
             phoneElement.focus();
+
         }
+
 
         return null;
 
     }
 
 
-    if (!validatePhone(phone)) {
+    if (
+        !validatePhone(phone)
+    ) {
 
         alert(
             "Vui lòng nhập số điện thoại hợp lệ."
         );
 
+
         if (phoneElement) {
+
             phoneElement.focus();
+
         }
+
 
         return null;
 
     }
 
+
+    /* =============================================
+       KIỂM TRA ĐỊA CHỈ
+    ============================================= */
 
     if (!address) {
 
@@ -437,9 +484,13 @@ function createOrderData() {
             "Vui lòng nhập địa chỉ nhận hàng."
         );
 
+
         if (addressElement) {
+
             addressElement.focus();
+
         }
+
 
         return null;
 
@@ -460,15 +511,24 @@ function createOrderData() {
                 checkoutProducts.find(
                     function (item) {
 
-                        return String(item.id).trim() ===
-                               String(cartItem.id).trim();
+                        return (
+                            String(item.id).trim() ===
+                            String(cartItem.id).trim()
+                        );
 
                     }
                 );
 
 
             if (!product) {
+
+                console.warn(
+                    "Không tìm thấy sản phẩm:",
+                    cartItem.id
+                );
+
                 return;
+
             }
 
 
@@ -484,8 +544,12 @@ function createOrderData() {
                 ) || 0;
 
 
-            if (quantity <= 0) {
+            if (
+                quantity <= 0
+            ) {
+
                 return;
+
             }
 
 
@@ -494,8 +558,14 @@ function createOrderData() {
                 id:
                     product.id,
 
+                code:
+                    product.code || "",
+
                 name:
                     product.name,
+
+                volume:
+                    product.volume || "",
 
                 quantity:
                     quantity,
@@ -508,6 +578,10 @@ function createOrderData() {
         }
     );
 
+
+    /* =============================================
+       KIỂM TRA SẢN PHẨM
+    ============================================= */
 
     if (
         items.length === 0
@@ -549,7 +623,7 @@ function createOrderData() {
 
 
     /* =============================================
-       TẠO ĐƠN
+       TẠO ĐƠN HÀNG
     ============================================= */
 
     const order = {
@@ -599,203 +673,314 @@ function createOrderData() {
    10. GỬI ĐƠN HÀNG
    FORM POST + IFRAME
    KHÔNG DÙNG FETCH
+   KHÔNG GẶP CORS
 ===================================================== */
 
-async function sendOrder(order) {
+function sendOrder(order) {
 
-    console.log(
-        "================================="
-    );
+    return new Promise(
+        function (resolve, reject) {
 
-
-    console.log(
-        "BẮT ĐẦU GỬI ĐƠN HÀNG"
-    );
-
-
-    console.log(
-        "MÃ ĐƠN:",
-        order.orderCode
-    );
-
-
-    console.log(
-        "DỮ LIỆU ĐƠN:",
-        order
-    );
-
-
-    console.log(
-        "================================="
-    );
-
-
-    try {
-
-        /* =============================================
-           TẠO IFRAME ẨN
-        ============================================= */
-
-        let iframe =
-            document.getElementById(
-                "orderSubmitFrame"
+            console.log(
+                "================================="
             );
 
 
-        if (!iframe) {
+            console.log(
+                "BẮT ĐẦU GỬI ĐƠN HÀNG"
+            );
 
-            iframe =
-                document.createElement(
-                    "iframe"
+
+            console.log(
+                "MÃ ĐƠN:",
+                order.orderCode
+            );
+
+
+            console.log(
+                "DỮ LIỆU:",
+                order
+            );
+
+
+            console.log(
+                "URL:",
+                ORDER_API_URL
+            );
+
+
+            console.log(
+                "================================="
+            );
+
+
+            let iframe = null;
+
+            let form = null;
+
+            let timeout = null;
+
+            let finished = false;
+
+
+            /* =============================================
+               DỌN DẸP
+            ============================================= */
+
+            function cleanup() {
+
+                if (timeout) {
+
+                    clearTimeout(
+                        timeout
+                    );
+
+                    timeout = null;
+
+                }
+
+
+                if (form) {
+
+                    form.remove();
+
+                    form = null;
+
+                }
+
+
+                if (iframe) {
+
+                    iframe.remove();
+
+                    iframe = null;
+
+                }
+
+            }
+
+
+            try {
+
+                /* =========================================
+                   KIỂM TRA URL
+                ========================================= */
+
+                if (
+                    !ORDER_API_URL
+                ) {
+
+                    throw new Error(
+                        "ORDER_API_URL chưa được cấu hình."
+                    );
+
+                }
+
+
+                /* =========================================
+                   TẠO IFRAME
+                ========================================= */
+
+                iframe =
+                    document.createElement(
+                        "iframe"
+                    );
+
+
+                iframe.id =
+                    "orderSubmitFrame";
+
+
+                iframe.name =
+                    "orderSubmitFrame";
+
+
+                iframe.style.display =
+                    "none";
+
+
+                document.body.appendChild(
+                    iframe
                 );
 
 
-            iframe.id =
-                "orderSubmitFrame";
+                /* =========================================
+                   TẠO FORM
+                ========================================= */
+
+                form =
+                    document.createElement(
+                        "form"
+                    );
 
 
-            iframe.name =
-                "orderSubmitFrame";
+                form.method =
+                    "POST";
 
 
-            iframe.style.display =
-                "none";
+                form.action =
+                    ORDER_API_URL;
 
 
-            document.body.appendChild(
-                iframe
-            );
-
-        }
+                form.target =
+                    "orderSubmitFrame";
 
 
-        /* =============================================
-           TẠO FORM
-        ============================================= */
-
-        const form =
-            document.createElement(
-                "form"
-            );
+                form.enctype =
+                    "application/x-www-form-urlencoded";
 
 
-        form.method =
-            "POST";
+                form.style.display =
+                    "none";
 
 
-        form.action =
-            ORDER_API_URL;
+                /* =========================================
+                   TẠO PAYLOAD
+                ========================================= */
+
+                const payload =
+                    document.createElement(
+                        "input"
+                    );
 
 
-        form.target =
-            "orderSubmitFrame";
+                payload.type =
+                    "hidden";
 
 
-        form.enctype =
-            "application/x-www-form-urlencoded";
+                payload.name =
+                    "payload";
 
 
-        form.style.display =
-            "none";
+                payload.value =
+                    JSON.stringify(
+                        order
+                    );
 
 
-        /* =============================================
-           PAYLOAD
-        ============================================= */
-
-        const payload =
-            document.createElement(
-                "input"
-            );
+                form.appendChild(
+                    payload
+                );
 
 
-        payload.type =
-            "hidden";
+                document.body.appendChild(
+                    form
+                );
 
 
-        payload.name =
-            "payload";
+                console.log(
+                    "PAYLOAD GỬI GOOGLE:",
+                    JSON.stringify(order)
+                );
 
 
-        payload.value =
-            JSON.stringify(order);
+                /* =========================================
+                   THEO DÕI IFRAME
+                ========================================= */
+
+                iframe.onload =
+                    function () {
+
+                        if (
+                            finished
+                        ) {
+
+                            return;
+
+                        }
 
 
-        form.appendChild(
-            payload
-        );
+                        finished = true;
 
 
-        /* =============================================
-           THÊM FORM VÀO TRANG
-        ============================================= */
-
-        document.body.appendChild(
-            form
-        );
+                        console.log(
+                            "GOOGLE APPS SCRIPT ĐÃ PHẢN HỒI."
+                        );
 
 
-        console.log(
-            "PAYLOAD GỬI GOOGLE SHEETS:",
-            order
-        );
+                        cleanup();
 
 
-        /* =============================================
-           SUBMIT
-        ============================================= */
+                        resolve(
+                            true
+                        );
 
-        form.submit();
-
-
-        console.log(
-            "ĐÃ GỬI FORM ĐẾN GOOGLE APPS SCRIPT"
-        );
+                    };
 
 
-        /* =============================================
-           CHỜ XỬ LÝ
-        ============================================= */
+                /* =========================================
+                   TIMEOUT
+                ========================================= */
 
-        await new Promise(
-            function (resolve) {
+                timeout =
+                    setTimeout(
+                        function () {
 
-                setTimeout(
-                    resolve,
-                    3000
+                            if (
+                                finished
+                            ) {
+
+                                return;
+
+                            }
+
+
+                            finished = true;
+
+
+                            cleanup();
+
+
+                            console.error(
+                                "TIMEOUT GOOGLE APPS SCRIPT"
+                            );
+
+
+                            reject(
+                                new Error(
+                                    "Không nhận được phản hồi từ Google Apps Script sau 15 giây."
+                                )
+                            );
+
+                        },
+                        15000
+                    );
+
+
+                /* =========================================
+                   SUBMIT
+                ========================================= */
+
+                form.submit();
+
+
+                console.log(
+                    "FORM ĐÃ SUBMIT ĐẾN GOOGLE APPS SCRIPT"
+                );
+
+
+            } catch (error) {
+
+                finished = true;
+
+
+                cleanup();
+
+
+                console.error(
+                    "LỖI SEND ORDER:",
+                    error
+                );
+
+
+                reject(
+                    error
                 );
 
             }
-        );
 
-
-        /* =============================================
-           XÓA FORM
-        ============================================= */
-
-        form.remove();
-
-
-        console.log(
-            "ĐÃ HOÀN TẤT GỬI ĐƠN:",
-            order.orderCode
-        );
-
-
-        return true;
-
-
-    } catch (error) {
-
-        console.error(
-            "LỖI GỬI ĐƠN:",
-            error
-        );
-
-
-        return false;
-
-    }
+        }
+    );
 
 }
 
@@ -823,7 +1008,9 @@ function initCheckoutForm() {
     }
 
 
-    /* Tránh gắn sự kiện nhiều lần */
+    /* =============================================
+       TRÁNH GẮN EVENT NHIỀU LẦN
+    ============================================= */
 
     if (
         form.dataset.initialized ===
@@ -839,6 +1026,10 @@ function initCheckoutForm() {
         "true";
 
 
+    /* =============================================
+       SUBMIT
+    ============================================= */
+
     form.addEventListener(
         "submit",
         async function (event) {
@@ -849,6 +1040,9 @@ function initCheckoutForm() {
             /* =========================================
                KIỂM TRA GIỎ
             ========================================= */
+
+            getCheckoutCart();
+
 
             if (
                 checkoutCart.length === 0
@@ -892,13 +1086,17 @@ function initCheckoutForm() {
                KHÓA NÚT
             ========================================= */
 
-            if (submitButton) {
+            if (
+                submitButton
+            ) {
 
                 submitButton.disabled =
                     true;
 
+
                 submitButton.dataset.oldText =
                     submitButton.textContent;
+
 
                 submitButton.textContent =
                     "Đang gửi đơn...";
@@ -906,26 +1104,97 @@ function initCheckoutForm() {
             }
 
 
-            /* =========================================
-               GỬI ĐƠN
-            ========================================= */
+            try {
 
-            const success =
+                /* =====================================
+                   GỬI ĐƠN
+                ===================================== */
+
                 await sendOrder(
                     order
                 );
 
 
-            /* =========================================
-               MỞ KHÓA NÚT NẾU LỖI
-            ========================================= */
+                console.log(
+                    "GỬI ĐƠN THÀNH CÔNG:",
+                    order.orderCode
+                );
 
-            if (!success) {
 
-                if (submitButton) {
+                /* =====================================
+                   XÓA GIỎ HÀNG
+                ===================================== */
+
+                localStorage.removeItem(
+                    "cart"
+                );
+
+
+                checkoutCart = [];
+
+
+                /* =====================================
+                   CẬP NHẬT SỐ GIỎ
+                ===================================== */
+
+                if (
+                    typeof updateCartCount ===
+                    "function"
+                ) {
+
+                    updateCartCount();
+
+                }
+
+
+                /* =====================================
+                   THÔNG BÁO
+                ===================================== */
+
+                alert(
+
+                    "ĐẶT HÀNG THÀNH CÔNG!\n\n" +
+
+                    "Mã đơn hàng: " +
+
+                    order.orderCode +
+
+                    "\n\n" +
+
+                    "Bách Sơn Tửu sẽ liên hệ với bạn " +
+
+                    "để xác nhận đơn hàng."
+
+                );
+
+
+                /* =====================================
+                   VỀ TRANG CHỦ
+                ===================================== */
+
+                window.location.href =
+                    "index.html";
+
+
+            } catch (error) {
+
+                console.error(
+                    "LỖI ĐẶT HÀNG:",
+                    error
+                );
+
+
+                /* =====================================
+                   MỞ KHÓA NÚT
+                ===================================== */
+
+                if (
+                    submitButton
+                ) {
 
                     submitButton.disabled =
                         false;
+
 
                     submitButton.textContent =
                         submitButton.dataset.oldText ||
@@ -936,67 +1205,17 @@ function initCheckoutForm() {
 
                 alert(
 
-                    "Không thể kết nối đến hệ thống đặt hàng.\n\n" +
-                    "Vui lòng thử lại sau."
+                    "KHÔNG THỂ GỬI ĐƠN HÀNG.\n\n" +
+
+                    error.message +
+
+                    "\n\n" +
+
+                    "Vui lòng thử lại."
 
                 );
 
-                return;
-
             }
-
-
-            /* =========================================
-               XÓA GIỎ HÀNG
-            ========================================= */
-
-            localStorage.removeItem(
-                "cart"
-            );
-
-
-            checkoutCart = [];
-
-
-            /* =========================================
-               CẬP NHẬT GIỎ HÀNG
-            ========================================= */
-
-            if (
-                typeof updateCartCount ===
-                "function"
-            ) {
-
-                updateCartCount();
-
-            }
-
-
-            /* =========================================
-               THÔNG BÁO
-            ========================================= */
-
-            alert(
-
-                "ĐẶT HÀNG THÀNH CÔNG!\n\n" +
-
-                "Mã đơn hàng: " +
-                order.orderCode +
-
-                "\n\n" +
-
-                "Bách Sơn Tửu sẽ liên hệ với bạn " +
-                "để xác nhận đơn hàng."
-
-            );
-
-
-            /* =========================================
-               VỀ TRANG CHỦ
-            ========================================= */
-
-            window.location.href =
-                "index.html";
 
         }
     );
@@ -1005,7 +1224,7 @@ function initCheckoutForm() {
 
 
 /* =====================================================
-   12. TẢI DỮ LIỆU SẢN PHẨM
+   12. TẢI SẢN PHẨM
 ===================================================== */
 
 async function loadCheckoutProducts() {
@@ -1041,9 +1260,9 @@ async function loadCheckoutProducts() {
 
     try {
 
-        /* =============================================
-           LẤY PRODUCTS
-        ============================================= */
+        /* =========================================
+           KIỂM TRA GET PRODUCTS
+        ========================================= */
 
         if (
             typeof getProducts !==
@@ -1057,13 +1276,17 @@ async function loadCheckoutProducts() {
         }
 
 
+        /* =========================================
+           TẢI PRODUCTS
+        ========================================= */
+
         checkoutProducts =
             await getProducts();
 
 
-        /* =============================================
+        /* =========================================
            KIỂM TRA PRODUCTS
-        ============================================= */
+        ========================================= */
 
         if (
             !Array.isArray(
@@ -1095,9 +1318,9 @@ async function loadCheckoutProducts() {
         );
 
 
-        /* =============================================
+        /* =========================================
            HIỂN THỊ
-        ============================================= */
+        ========================================= */
 
         renderCheckoutItems();
 
