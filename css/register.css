@@ -1,0 +1,261 @@
+/* =====================================================
+   REGISTER PAGE - BÁCH SƠN TỬU
+===================================================== */
+
+.register-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+    background: var(--white);
+}
+
+
+/* =====================================================
+   REGISTER BOX
+===================================================== */
+
+.register-box {
+    width: 100%;
+    max-width: 500px;
+    padding: 40px;
+    background: rgba(255, 255, 255, 0.96);
+    border-radius: 16px;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(139, 94, 60, 0.15);
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.register-box h1 {
+    margin: 0 0 10px;
+    text-align: center;
+    font-size: 32px;
+    font-weight: 800;
+}
+
+
+/* =====================================================
+   DESCRIPTION
+===================================================== */
+
+.register-box > p {
+    margin: 0 0 30px;
+    text-align: center;
+    font-size: 15px;
+}
+
+
+/* =====================================================
+   FORM GROUP
+===================================================== */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+/* =====================================================
+   LABEL
+===================================================== */
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   INPUT
+===================================================== */
+
+.form-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 14px 16px;
+    border: 1px solid var(--gold-dark);
+    border-radius: 8px;
+    background: var(--white);
+    font-family: inherit;
+    font-size: 15px;
+    outline: none;
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+/* FOCUS */
+
+.form-group input:focus {
+
+    border-color: var(--gold-drack);
+    box-shadow:
+        0 0 0 3px rgba(139, 94, 60, 0.12);
+}
+
+
+/* PLACEHOLDER */
+
+.form-group input::placeholder {
+    color: #aaa;
+}
+
+
+/* =====================================================
+   REGISTER BUTTON
+===================================================== */
+
+.btn-register {
+
+    width: 100%;
+    padding: 14px 20px;
+    border: none;
+    border-radius: 8px;
+    background: var(--gold);
+    color: var(--white);
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.btn-register:hover {
+    background: var(--gold-dark);
+    border-color: var(--gold-dark);
+    transform: translateY(-2px);
+}
+
+
+.btn-register:active {
+    transform: translateY(0);
+
+}
+
+
+/* =====================================================
+   MESSAGE
+===================================================== */
+
+#registerMessage {
+
+    margin-top: 18px;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 14px;
+    color: var(--gold-dark);
+    background: var( --cream-dark);
+}
+
+
+/* =====================================================
+   LOGIN LINK
+===================================================== */
+
+.login-link {
+
+    margin-top: 25px !important;
+    margin-bottom: 0 !important;
+    text-align: center;
+    font-size: 14px;
+}
+
+
+.login-link a {
+
+    color: var(--gold-dark);
+    font-weight: 700;
+    text-decoration: none;
+}
+
+
+.login-link a:hover {
+
+    text-decoration: underline;
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+    .register-container {
+
+        padding: 25px 15px;
+
+        align-items: flex-start;
+
+    }
+
+
+    .register-box {
+
+        margin-top: 30px;
+
+        padding: 30px 22px;
+
+        border-radius: 12px;
+
+    }
+
+
+    .register-box h1 {
+
+        font-size: 27px;
+
+    }
+
+
+    .form-group input {
+
+        padding: 13px 14px;
+
+    }
+
+}
+
+
+/* =====================================================
+   SMALL MOBILE
+===================================================== */
+
+@media (max-width: 480px) {
+
+    .register-container {
+
+        padding: 15px 10px;
+
+    }
+
+
+    .register-box {
+
+        margin-top: 15px;
+
+        padding: 25px 18px;
+
+    }
+
+
+    .register-box h1 {
+
+        font-size: 24px;
+
+    }
+
+}

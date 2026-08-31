@@ -12,15 +12,6 @@ let checkoutProducts = [];
 
 let checkoutCart = [];
 
-
-/* =====================================================
-   2. GOOGLE APPS SCRIPT
-===================================================== */
-
-const ORDER_API_URL =
-    "https://script.google.com/macros/s/AKfycbyr_zxBVmIooNneOOjL6PLssyJy1tRnGA3fyfEysMC7RzZ1A2yxPkzT-HvIWtveQXAe/exec";
-
-
 /* =====================================================
    3. ĐỊNH DẠNG GIÁ
 ===================================================== */
@@ -668,323 +659,345 @@ function createOrderData() {
 
 }
 
-
 /* =====================================================
-   10. GỬI ĐƠN HÀNG
-   FORM POST + IFRAME
-   KHÔNG DÙNG FETCH
-   KHÔNG GẶP CORS
+   LƯU ĐƠN HÀNG VÀO SUPABASE
+   YÊU CẦU ĐĂNG NHẬP
 ===================================================== */
 
-function sendOrder(order) {
+async function sendOrderToSupabase(order) {
 
-    return new Promise(
-        function (resolve, reject) {
-
-            console.log(
-                "================================="
-            );
-
-
-            console.log(
-                "BẮT ĐẦU GỬI ĐƠN HÀNG"
-            );
-
-
-            console.log(
-                "MÃ ĐƠN:",
-                order.orderCode
-            );
-
-
-            console.log(
-                "DỮ LIỆU:",
-                order
-            );
-
-
-            console.log(
-                "URL:",
-                ORDER_API_URL
-            );
-
-
-            console.log(
-                "================================="
-            );
-
-
-            let iframe = null;
-
-            let form = null;
-
-            let timeout = null;
-
-            let finished = false;
-
-
-            /* =============================================
-               DỌN DẸP
-            ============================================= */
-
-            function cleanup() {
-
-                if (timeout) {
-
-                    clearTimeout(
-                        timeout
-                    );
-
-                    timeout = null;
-
-                }
-
-
-                if (form) {
-
-                    form.remove();
-
-                    form = null;
-
-                }
-
-
-                if (iframe) {
-
-                    iframe.remove();
-
-                    iframe = null;
-
-                }
-
-            }
-
-
-            try {
-
-                /* =========================================
-                   KIỂM TRA URL
-                ========================================= */
-
-                if (
-                    !ORDER_API_URL
-                ) {
-
-                    throw new Error(
-                        "ORDER_API_URL chưa được cấu hình."
-                    );
-
-                }
-
-
-                /* =========================================
-                   TẠO IFRAME
-                ========================================= */
-
-                iframe =
-                    document.createElement(
-                        "iframe"
-                    );
-
-
-                iframe.id =
-                    "orderSubmitFrame";
-
-
-                iframe.name =
-                    "orderSubmitFrame";
-
-
-                iframe.style.display =
-                    "none";
-
-
-                document.body.appendChild(
-                    iframe
-                );
-
-
-                /* =========================================
-                   TẠO FORM
-                ========================================= */
-
-                form =
-                    document.createElement(
-                        "form"
-                    );
-
-
-                form.method =
-                    "POST";
-
-
-                form.action =
-                    ORDER_API_URL;
-
-
-                form.target =
-                    "orderSubmitFrame";
-
-
-                form.enctype =
-                    "application/x-www-form-urlencoded";
-
-
-                form.style.display =
-                    "none";
-
-
-                /* =========================================
-                   TẠO PAYLOAD
-                ========================================= */
-
-                const payload =
-                    document.createElement(
-                        "input"
-                    );
-
-
-                payload.type =
-                    "hidden";
-
-
-                payload.name =
-                    "payload";
-
-
-                payload.value =
-                    JSON.stringify(
-                        order
-                    );
-
-
-                form.appendChild(
-                    payload
-                );
-
-
-                document.body.appendChild(
-                    form
-                );
-
-
-                console.log(
-                    "PAYLOAD GỬI GOOGLE:",
-                    JSON.stringify(order)
-                );
-
-
-                /* =========================================
-                   THEO DÕI IFRAME
-                ========================================= */
-
-                iframe.onload =
-                    function () {
-
-                        if (
-                            finished
-                        ) {
-
-                            return;
-
-                        }
-
-
-                        finished = true;
-
-
-                        console.log(
-                            "GOOGLE APPS SCRIPT ĐÃ PHẢN HỒI."
-                        );
-
-
-                        cleanup();
-
-
-                        resolve(
-                            true
-                        );
-
-                    };
-
-
-                /* =========================================
-                   TIMEOUT
-                ========================================= */
-
-                timeout =
-                    setTimeout(
-                        function () {
-
-                            if (
-                                finished
-                            ) {
-
-                                return;
-
-                            }
-
-
-                            finished = true;
-
-
-                            cleanup();
-
-
-                            console.error(
-                                "TIMEOUT GOOGLE APPS SCRIPT"
-                            );
-
-
-                            reject(
-                                new Error(
-                                    "Không nhận được phản hồi từ Google Apps Script sau 15 giây."
-                                )
-                            );
-
-                        },
-                        15000
-                    );
-
-
-                /* =========================================
-                   SUBMIT
-                ========================================= */
-
-                form.submit();
-
-
-                console.log(
-                    "FORM ĐÃ SUBMIT ĐẾN GOOGLE APPS SCRIPT"
-                );
-
-
-            } catch (error) {
-
-                finished = true;
-
-
-                cleanup();
-
-
-                console.error(
-                    "LỖI SEND ORDER:",
-                    error
-                );
-
-
-                reject(
-                    error
-                );
-
-            }
-
-        }
+    console.log(
+        "================================="
     );
 
+    console.log(
+        "BẮT ĐẦU LƯU ĐƠN HÀNG SUPABASE"
+    );
+
+    console.log(
+        "MÃ ĐƠN:",
+        order.orderCode
+    );
+
+    console.log(
+        "DỮ LIỆU:",
+        order
+    );
+
+    console.log(
+        "================================="
+    );
+
+
+    /* =================================================
+       1. LẤY SUPABASE CLIENT
+    ================================================= */
+
+    const supabaseClient =
+        getSupabaseClient();
+
+
+    if (!supabaseClient) {
+
+        throw new Error(
+            "Không tìm thấy kết nối Supabase."
+        );
+
+    }
+
+
+    console.log(
+        "SUPABASE CLIENT OK"
+    );
+
+
+    /* =================================================
+       2. LẤY USER ĐANG ĐĂNG NHẬP
+    ================================================= */
+
+    const {
+        data: {
+            user
+        },
+        error: userError
+    } = await supabaseClient.auth.getUser();
+
+
+    if (userError || !user) {
+
+        console.error(
+            "LỖI LẤY USER:",
+            userError
+        );
+
+        throw new Error(
+            "Vui lòng đăng nhập trước khi đặt hàng."
+        );
+
+    }
+
+
+    console.log(
+        "USER ĐANG ĐĂNG NHẬP:",
+        user.id
+    );
+
+    console.log(
+        "EMAIL:",
+        user.email
+    );
+// Lấy thông tin user trong public.users
+const { data: publicUser, error: publicUserError } =
+    await supabaseClient
+        .from("users")
+        .select("id, user_id, name, email, phone, role, status")
+        .eq("auth_user_id", user.id)
+        .single();
+
+if (publicUserError || !publicUser) {
+    console.error("LỖI LẤY PUBLIC USER:", publicUserError);
+    throw new Error("Không tìm thấy thông tin tài khoản.");
 }
 
+console.log("PUBLIC USER:", publicUser);
+console.log("PUBLIC USER DB ID:", publicUser.id);
 
+    /* =================================================
+       3. TẠO ID ĐƠN HÀNG
+    ================================================= */
+
+    const orderUUID =
+        crypto.randomUUID();
+
+
+    /* =================================================
+       4. TẠO DỮ LIỆU ORDERS
+    ================================================= */
+
+    const orderData = {
+
+        id:
+            orderUUID,
+
+        order_id:
+            order.orderCode,
+
+        user_id: publicUser.id,
+
+        customer_name:
+            order.customerName,
+
+        customer_phone:
+            order.customerPhone,
+
+        customer_email:
+            user.email || null,
+
+        address:
+            order.customerAddress,
+
+        note:
+            order.note || "",
+
+        subtotal:
+            order.items.reduce(
+                function (sum, item) {
+
+                    return sum +
+                        (
+                            Number(item.price) *
+                            Number(item.quantity)
+                        );
+
+                },
+                0
+            ),
+
+        shipping_fee:
+            Number(order.shipping) || 0,
+
+        total:
+            Number(order.total) || 0,
+
+        payment_method:
+            "COD",
+
+        payment_status:
+            "Pending",
+
+        order_status:
+            "Pending"
+
+    };
+
+
+    console.log(
+        "ORDER DATA:",
+        orderData
+    );
+
+
+    /* =================================================
+       4. INSERT ORDERS
+       
+       KHÔNG .select()
+       KHÔNG .single()
+    ================================================= */
+
+    const {
+        error: orderError
+    } = await supabaseClient
+
+        .from("orders")
+
+        .insert(orderData);
+
+
+    /* =================================================
+       5. KIỂM TRA ORDERS
+    ================================================= */
+
+    if (orderError) {
+
+        console.error(
+            "LỖI TẠO ORDERS:",
+            orderError
+        );
+
+        throw new Error(
+            "Không thể tạo đơn hàng: " +
+            orderError.message
+        );
+
+    }
+
+
+    console.log(
+        "ĐÃ TẠO ORDERS:",
+        orderUUID
+    );
+
+
+    /* =================================================
+       6. TẠO ORDER ITEMS
+    ================================================= */
+
+    const orderItems =
+        order.items.map(
+            function (item) {
+
+                return {
+
+                    order_id:
+                        orderUUID,
+
+                    product_id:
+                        item.id || null,
+
+                    product_code:
+                        item.code || "",
+
+                    product_name:
+                        item.name,
+
+                    quantity:
+                        Number(item.quantity),
+
+                    price:
+                        Number(item.price),
+
+                    total:
+                        Number(item.price) *
+                        Number(item.quantity)
+
+                };
+
+            }
+        );
+
+
+    console.log(
+        "ORDER ITEMS:",
+        orderItems
+    );
+
+
+    /* =================================================
+       7. INSERT ORDER ITEMS
+    ================================================= */
+
+    const {
+        error: itemsError
+    } = await supabaseClient
+
+        .from("order_items")
+
+        .insert(orderItems);
+
+
+    /* =================================================
+       8. KIỂM TRA ORDER ITEMS
+    ================================================= */
+
+    if (itemsError) {
+
+        console.error(
+            "LỖI TẠO ORDER_ITEMS:",
+            itemsError
+        );
+
+
+        /*
+           XÓA ĐƠN HÀNG NẾU ORDER ITEMS THẤT BẠI
+        */
+
+        await supabaseClient
+
+            .from("orders")
+
+            .delete()
+
+            .eq(
+                "id",
+                orderUUID
+            );
+
+
+        throw new Error(
+            "Không thể lưu sản phẩm trong đơn hàng: " +
+            itemsError.message
+        );
+
+    }
+
+
+    console.log(
+        "ĐÃ TẠO ORDER_ITEMS"
+    );
+
+
+    /* =================================================
+       9. HOÀN TẤT
+    ================================================= */
+
+    return {
+
+        order: {
+
+            id:
+                orderUUID,
+
+            order_id:
+                order.orderCode
+
+        },
+
+        items:
+            orderItems
+
+    };
+
+}
 /* =====================================================
    11. XỬ LÝ FORM ĐẶT HÀNG
 ===================================================== */
@@ -1110,7 +1123,7 @@ function initCheckoutForm() {
                    GỬI ĐƠN
                 ===================================== */
 
-                await sendOrder(
+                await sendOrderToSupabase(
                     order
                 );
 

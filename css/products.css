@@ -253,6 +253,10 @@
     cursor: pointer;
     transition: all 0.3s ease;
 }
+.add-to-cart i {
+    margin-right: 8px;
+    font-size: 14px;
+}
 
 .add-to-cart:hover {
     background: var(--gold-dark);

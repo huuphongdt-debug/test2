@@ -36,6 +36,38 @@
                 <a href="gallery.html">Thư viện</a>
                 <a href="contact.html">Liên hệ</a>
             </nav>
+            <div class="account-area">
+
+    <a
+        href="login.html"
+        data-auth-login
+    >
+        Đăng nhập
+    </a>
+
+
+    <div
+        data-auth-user
+        style="display:none;"
+    >
+
+        Xin chào,
+        <strong data-user-name>
+            Tài khoản
+        </strong>
+
+    </div>
+
+
+    <a
+        href="#"
+        data-auth-logout
+        style="display:none;"
+    >
+        Đăng xuất
+    </a>
+
+</div>
             <!-- GIỎ HÀNG -->
             <a
                 href="cart.html"
@@ -997,10 +1029,11 @@
 
 
     <!-- JAVASCRIPT -->
-    <script src="js/product-api.js"></script>
-    <script src="js/products.js"></script>
-    <script src="js/cart.js"></script>
+     <script src="js/auth.js"></script>
     <script src="js/script.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/product-api.js"></script>
+    <script src="js/cart.js"></script>
 
 
 </body>

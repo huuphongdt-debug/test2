@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Quản trị đơn hàng | Bách Sơn Tửu</title>
+
+    <link
+        rel="preconnect"
+        href="https://fonts.googleapis.com"
+    >
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/admin-orders.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     HEADER ADMIN
+===================================================== -->
+
+<header class="admin-header">
+
+    <div class="admin-header-container">
+
+        <a
+            href="index.html"
+            class="admin-logo"
+        >
+
+            <img
+                src="images/logo/logo-main.png"
+                alt="Bách Sơn Tửu"
+            >
+
+        </a>
+
+
+        <div class="admin-title">
+
+            <span>
+                BÁCH SƠN TỬU
+            </span>
+
+            <h1>
+                Quản trị đơn hàng
+            </h1>
+
+        </div>
+
+
+        <a
+            href="index.html"
+            class="admin-back"
+        >
+
+            <i class="fa-solid fa-arrow-left"></i>
+
+            Trang chủ
+
+        </a>
+
+    </div>
+
+</header>
+
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="admin-orders-page">
+
+    <div class="admin-orders-container">
+
+
+        <!-- =================================================
+             TIÊU ĐỀ
+        ================================================== -->
+
+        <div class="admin-page-heading">
+
+            <div>
+
+                <span class="section-subtitle">
+                    ORDER MANAGEMENT
+                </span>
+
+                <h2>
+                    Danh sách đơn hàng
+                </h2>
+
+            </div>
+
+
+            <button
+                type="button"
+                class="refresh-orders"
+                id="refreshOrders"
+            >
+
+                <i class="fa-solid fa-rotate"></i>
+
+                Làm mới
+
+            </button>
+
+        </div>
+
+
+
+        <!-- =================================================
+             THỐNG KÊ
+        ================================================== -->
+
+        <div class="order-statistics">
+
+            <div class="order-stat-card">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-box"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Tổng đơn
+                    </span>
+
+                    <strong id="totalOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-stat-card">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-clock"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Chờ xử lý
+                    </span>
+
+                    <strong id="pendingOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-stat-card">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-truck"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Đang giao
+                    </span>
+
+                    <strong id="shippingOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="order-stat-card">
+
+                <div class="stat-icon">
+
+                    <i class="fa-solid fa-circle-check"></i>
+
+                </div>
+
+                <div>
+
+                    <span>
+                        Đã giao
+                    </span>
+
+                    <strong id="completedOrders">
+                        0
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             BỘ LỌC
+        ================================================== -->
+
+        <div class="order-filter">
+
+            <div class="filter-search">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="orderSearch"
+                    placeholder="Tìm mã đơn, tên hoặc số điện thoại..."
+                >
+
+            </div>
+
+
+            <select id="orderStatusFilter">
+
+                <option value="all">
+                    Tất cả trạng thái
+                </option>
+
+                <option value="Pending">
+                    Chờ xử lý
+                </option>
+
+                <option value="Confirmed">
+                    Đã xác nhận
+                </option>
+
+                <option value="Shipping">
+                    Đang giao
+                </option>
+
+                <option value="Completed">
+                    Đã giao
+                </option>
+
+                <option value="Cancelled">
+                    Đã hủy
+                </option>
+
+            </select>
+
+        </div>
+
+
+
+        <!-- =================================================
+             TRẠNG THÁI TẢI
+        ================================================== -->
+
+        <div
+            id="ordersLoading"
+            class="orders-loading"
+        >
+
+            <i class="fa-solid fa-spinner fa-spin"></i>
+
+            Đang tải đơn hàng...
+
+        </div>
+
+
+
+        <!-- =================================================
+             BẢNG ĐƠN HÀNG
+        ================================================== -->
+
+        <div class="orders-table-wrapper">
+
+            <table class="orders-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Mã đơn
+                        </th>
+
+                        <th>
+                            Khách hàng
+                        </th>
+
+                        <th>
+                            Số điện thoại
+                        </th>
+
+                        <th>
+                            Tổng tiền
+                        </th>
+
+                        <th>
+                            Thanh toán
+                        </th>
+
+                        <th>
+                            Trạng thái
+                        </th>
+
+                        <th>
+                            Thời gian
+                        </th>
+
+                        <th>
+                            Chi tiết
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="ordersTableBody">
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+
+
+        <!-- =================================================
+             KHÔNG CÓ ĐƠN
+        ================================================== -->
+
+        <div
+            id="ordersEmpty"
+            class="orders-empty"
+            hidden
+        >
+
+            <i class="fa-solid fa-box-open"></i>
+
+            <h3>
+                Chưa có đơn hàng
+            </h3>
+
+            <p>
+                Hiện chưa tìm thấy đơn hàng nào.
+            </p>
+
+        </div>
+
+
+    </div>
+
+</main>
+
+
+
+<!-- =====================================================
+     SUPABASE
+===================================================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+
+<!--
+    LƯU Ý:
+
+    Ở đây phải dùng file khởi tạo Supabase
+    mà website Bách Sơn Tửu đang sử dụng.
+
+    Ví dụ nếu bạn có:
+
+    js/supabase.js
+
+    thì đặt nó trước admin-orders.js.
+-->
+
+<script src="js/supabase.js"></script>
+
+<script src="js/admin-orders.js"></script>
+
+
+</body>
+
+</html>

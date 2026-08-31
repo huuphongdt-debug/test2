@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Đăng ký tài khoản | BÁCH SƠN TỬU</title>
+
+    <link
+        rel="stylesheet"
+        href="css/style.css"
+    >
+
+    <link
+        rel="stylesheet"
+        href="css/register.css"
+    >
+
+</head>
+
+
+<body>
+
+
+    <div class="register-container">
+
+
+        <div class="register-box">
+
+
+            <h1>
+                Đăng ký tài khoản
+            </h1>
+
+
+            <p>
+                Tạo tài khoản để quản lý đơn hàng của bạn
+            </p>
+
+
+            <form id="registerForm">
+
+
+                <!-- =========================
+                     HỌ VÀ TÊN
+                ========================== -->
+
+                <div class="form-group">
+
+                    <label for="name">
+                        Họ và tên
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        placeholder="Nhập họ và tên"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     EMAIL HOẶC SỐ ĐIỆN THOẠI
+                ========================== -->
+
+                <div class="form-group">
+
+                    <label for="contact">
+                        Email hoặc số điện thoại
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contact"
+                        name="contact"
+                        placeholder="Nhập Email hoặc số điện thoại"
+                        autocomplete="username"
+                        required
+                    >
+
+                    <small>
+                        Bạn có thể đăng ký bằng Email hoặc số điện thoại
+                    </small>
+
+                </div>
+
+
+                <!-- =========================
+                     MẬT KHẨU
+                ========================== -->
+
+                <div class="form-group">
+
+                    <label for="password">
+                        Mật khẩu
+                    </label>
+
+                    <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        placeholder="Nhập mật khẩu"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     XÁC NHẬN MẬT KHẨU
+                ========================== -->
+
+                <div class="form-group">
+
+                    <label for="confirmPassword">
+                        Xác nhận mật khẩu
+                    </label>
+
+                    <input
+                        type="password"
+                        id="confirmPassword"
+                        name="confirmPassword"
+                        placeholder="Nhập lại mật khẩu"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                </div>
+
+
+                <!-- =========================
+                     NÚT ĐĂNG KÝ
+                ========================== -->
+
+                <button
+                    type="submit"
+                    class="btn-register"
+                    id="registerButton"
+                >
+                    Đăng ký
+                </button>
+
+
+            </form>
+
+
+            <!-- =========================
+                 THÔNG BÁO
+            ========================== -->
+
+            <div
+                id="registerMessage"
+                class="register-message"
+            ></div>
+
+
+            <!-- =========================
+                 ĐĂNG NHẬP
+            ========================== -->
+
+            <p class="login-link">
+
+                Đã có tài khoản?
+
+                <a href="login.html">
+                    Đăng nhập
+                </a>
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =========================
+         SUPABASE
+    ========================== -->
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="js/supabase.js"></script>
+
+    <script src="js/register.js"></script>
+
+
+</body>
+
+</html>

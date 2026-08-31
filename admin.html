@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Quản trị | BÁCH SƠN TỬU</title>
+
+    <link
+        rel="stylesheet"
+        href="css/admin.css"
+    >
+    <link rel="stylesheet" href="css/admin-orders.css">
+
+</head>
+
+
+<body>
+
+    <!-- ==============================
+         SIDEBAR
+    =============================== -->
+
+    <aside class="admin-sidebar">
+
+        <div class="admin-logo">
+            BÁCH SƠN TỬU
+        </div>
+
+
+        <nav class="admin-menu">
+
+    <!-- TỔNG QUAN -->
+    <a
+        href="#"
+        id="dashboardMenu"
+        class="admin-menu-item active"
+    >
+        <span>📊</span>
+        Tổng quan
+    </a>
+
+
+    <!-- ĐƠN HÀNG -->
+    <a
+        href="#"
+        id="ordersMenu"
+        class="admin-menu-item"
+    >
+        <span>📦</span>
+        Đơn hàng
+    </a>
+
+
+    <!-- SẢN PHẨM -->
+    <a
+        href="#"
+        id="productsMenu"
+        class="admin-menu-item"
+    >
+        <span>🛒</span>
+        Sản phẩm
+    </a>
+
+
+    <!-- NGƯỜI DÙNG -->
+    <a
+        href="#"
+        id="usersMenu"
+        class="admin-menu-item"
+    >
+        <span>👥</span>
+        Người dùng
+    </a>
+
+
+    <!-- NỘI DUNG -->
+    <a
+        href="#"
+        id="contentMenu"
+        class="admin-menu-item"
+    >
+        <span>📚</span>
+        Nội dung
+    </a>
+
+</nav>
+
+
+        <div class="admin-sidebar-bottom">
+
+            <a href="index.html">
+                ← Về trang chủ
+            </a>
+
+            <button id="logoutButton">
+                Đăng xuất
+            </button>
+
+        </div>
+
+    </aside>
+
+
+    <!-- ==============================
+         MAIN
+    =============================== -->
+
+    <main class="admin-main">
+
+
+        <!-- HEADER -->
+
+        <header class="admin-header">
+
+            <div>
+
+                <h1>
+                    Tổng quan
+                </h1>
+
+                <p>
+                    Quản lý hệ thống BÁCH SƠN TỬU
+                </p>
+
+            </div>
+
+
+            <div class="admin-user">
+
+                <span>
+                    Xin chào,
+                </span>
+
+                <strong id="adminName">
+                    Admin
+                </strong>
+
+            </div>
+
+        </header>
+
+
+        <!-- =========================================
+     QUẢN LÝ ĐƠN HÀNG
+========================================= -->
+
+<section
+    id="ordersSection"
+    class="admin-section"
+    style="display: none;"
+>
+
+    <div class="section-header">
+
+        <div>
+            <h1>Quản lý đơn hàng</h1>
+
+            <p>
+                Theo dõi và xử lý các đơn hàng của khách hàng
+            </p>
+        </div>
+
+        <button
+            type="button"
+            id="refreshOrdersBtn"
+            class="admin-refresh-btn"
+        >
+            <i class="fa-solid fa-rotate"></i>
+            Làm mới
+        </button>
+
+    </div>
+
+
+    <!-- THỐNG KÊ -->
+
+    <div class="order-stat-grid">
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                📦
+            </span>
+
+            <div>
+                <span>Đơn hàng</span>
+                <strong id="orderTotalOrders">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                ⏳
+            </span>
+
+            <div>
+                <span>Chờ xử lý</span>
+                <strong id="pendingOrders">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                🚚
+            </span>
+
+            <div>
+                <span>Đang giao</span>
+                <strong id="shippingOrders">
+                    0
+                </strong>
+            </div>
+
+        </div>
+
+
+        <div class="order-stat-card">
+
+            <span class="stat-icon">
+                💰
+            </span>
+
+            <div>
+                <span>Doanh thu</span>
+                <strong id="orderRevenue">
+                    0đ
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- BẢNG ĐƠN HÀNG -->
+
+    <div class="orders-panel">
+
+        <div class="orders-panel-header">
+
+            <h2>
+                Danh sách đơn hàng
+            </h2>
+
+            <div class="orders-filter">
+
+                <input
+                    type="text"
+                    id="orderSearch"
+                    placeholder="Tìm mã đơn, tên khách hàng..."
+                >
+
+                <select id="orderStatusFilter">
+
+                    <option value="all">
+                        Tất cả trạng thái
+                    </option>
+
+                    <option value="Chờ xử lý">
+                        Chờ xử lý
+                    </option>
+
+                    <option value="Đã xác nhận">
+                        Đã xác nhận
+                    </option>
+
+                    <option value="Đang giao">
+                        Đang giao
+                    </option>
+
+                    <option value="Đã giao">
+                        Đã giao
+                    </option>
+
+                    <option value="Đã hủy">
+                        Đã hủy
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="orders-table-wrapper">
+
+            <table class="orders-table">
+
+                <thead>
+
+                    <tr>
+
+                        <th>
+                            Mã đơn
+                        </th>
+
+                        <th>
+                            Khách hàng
+                        </th>
+
+                        <th>
+                            Số điện thoại
+                        </th>
+
+                        <th>
+                            Ngày đặt
+                        </th>
+
+                        <th>
+                            Tổng tiền
+                        </th>
+
+                        <th>
+                            Thanh toán
+                        </th>
+
+                        <th>
+                            Trạng thái
+                        </th>
+
+                        <th>
+                            Thao tác
+                        </th>
+
+                    </tr>
+
+                </thead>
+
+
+                <tbody id="ordersTableBody">
+
+                    <tr>
+
+                        <td
+                            colspan="8"
+                            class="orders-loading"
+                        >
+                            Đang tải đơn hàng...
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
+     CÁC KHU VỰC QUẢN LÝ KHÁC
+========================================= -->
+
+<section
+    id="comingSoonSection"
+    class="admin-section"
+    style="display: none;"
+>
+
+    <div class="content-box">
+
+        <h2 id="comingSoonTitle">
+            Chức năng
+        </h2>
+
+        <p id="comingSoonMessage">
+            Chức năng đang được xây dựng.
+        </p>
+
+    </div>
+
+</section>
+
+        <!-- ==============================
+             THỐNG KÊ
+        =============================== -->
+
+        <section class="dashboard-stats">
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📦
+                </div>
+
+                <div>
+
+                    <p>
+                        Đơn hàng
+                    </p>
+
+                    <h2 id="totalOrders">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    🛒
+                </div>
+
+                <div>
+
+                    <p>
+                        Sản phẩm
+                    </p>
+
+                    <h2 id="totalProducts">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👥
+                </div>
+
+                <div>
+
+                    <p>
+                        Người dùng
+                    </p>
+
+                    <h2 id="totalUsers">
+                        0
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    💰
+                </div>
+
+                <div>
+
+                    <p>
+                        Doanh thu
+                    </p>
+
+                    <h2 id="totalRevenue">
+                        0đ
+                    </h2>
+
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+        <!-- ==============================
+             KHU VỰC NỘI DUNG
+        =============================== -->
+
+        <section class="admin-content">
+
+
+            <div class="content-box">
+
+                <h2>
+                    Quản trị hệ thống
+                </h2>
+
+                <p>
+                    Chào mừng bạn đến với trang quản trị
+                    BÁCH SƠN TỬU.
+                </p>
+
+            </div>
+
+
+            <div class="content-box">
+
+                <h2>
+                    Trạng thái tài khoản
+                </h2>
+
+                <p>
+                    Quyền:
+                    <strong id="adminRole">
+                        Admin
+                    </strong>
+                </p>
+
+                <p>
+                    Trạng thái:
+                    <strong id="adminStatus">
+                        Active
+                    </strong>
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ==============================
+         SUPABASE
+    =============================== -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script src="js/supabase.js"></script>
+
+<!-- JS kiểm tra đăng nhập / quyền admin của chúng ta -->
+<script src="js/admin.js"></script>
+
+<!-- QUẢN LÝ ĐƠN HÀNG -->
+<script src="js/admin-orders.js"></script>
+
+
+</body>
+
+</html>

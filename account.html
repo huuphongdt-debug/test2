@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+
+<html lang="vi">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Tài khoản | Bách Sơn Tửu</title>
+
+</head>
+
+
+<body>
+
+
+    <main>
+
+        <h1>
+            Tài khoản của tôi
+        </h1>
+
+
+        <div>
+
+            <p>
+                Họ tên:
+                <strong data-user-name></strong>
+            </p>
+
+
+            <p>
+                Email:
+                <strong data-user-email></strong>
+            </p>
+
+
+            <p>
+                Số điện thoại:
+                <strong data-user-phone></strong>
+            </p>
+
+
+            <p>
+                User ID:
+                <strong id="accountUserId"></strong>
+            </p>
+
+
+            <button
+                type="button"
+                data-auth-logout
+            >
+                Đăng xuất
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="js/auth.js"></script>
+
+
+    <script>
+
+        document.addEventListener(
+            "DOMContentLoaded",
+            function() {
+
+                if (
+                    !requireLogin(
+                        "login.html"
+                    )
+                ) {
+
+                    return;
+
+                }
+
+
+                const user =
+                    getCurrentUser();
+
+
+                if (user) {
+
+                    document
+                        .getElementById(
+                            "accountUserId"
+                        )
+                        .textContent =
+                        user.userId;
+
+                }
+
+            }
+        );
+
+    </script>
+
+
+</body>
+
+</html>
