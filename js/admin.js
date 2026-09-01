@@ -156,6 +156,13 @@ document.addEventListener("DOMContentLoaded", async () => {
     console.log("=================================");
 
 
+    /* =========================================
+        TẢI THỐNG KÊ DASHBOARD
+    ========================================= */
+
+    loadDashboardStats();
+
+
     /* =================================================
        8. HIỂN THỊ TÊN ADMIN
     ================================================= */
@@ -255,78 +262,253 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
 
 });
+/* =====================================================
+   DASHBOARD STATISTICS
+   BÁCH SƠN TỬU
+===================================================== */
+
 async function loadDashboardStats() {
+
+    console.log("=================================");
+    console.log("ADMIN: ĐANG TẢI THỐNG KÊ DASHBOARD");
+    console.log("=================================");
 
     try {
 
-        // ==============================
-        // ĐẾM ĐƠN HÀNG
-        // ==============================
+        /* =========================================
+           1. ĐẾM ĐƠN HÀNG
+        ========================================= */
 
-        const { count: orderCount, error: orderError } =
-            await supabaseClient
-                .from("orders")
-                .select("*", {
-                    count: "exact",
-                    head: true
-                });
+        const {
+            count: orderCount,
+            error: orderError
+        } = await supabaseClient
+            .from("orders")
+            .select("*", {
+                count: "exact",
+                head: true
+            });
+
 
         if (orderError) {
-            console.error("Lỗi lấy đơn hàng:", orderError);
+
+            console.error(
+                "Lỗi lấy số đơn hàng:",
+                orderError
+            );
+
         }
 
 
-        // ==============================
-        // ĐẾM SẢN PHẨM
-        // ==============================
+        /* =========================================
+           2. ĐẾM SẢN PHẨM
+        ========================================= */
 
-        const { count: productCount, error: productError } =
-            await supabaseClient
-                .from("products")
-                .select("*", {
-                    count: "exact",
-                    head: true
-                });
+        const {
+            count: productCount,
+            error: productError
+        } = await supabaseClient
+            .from("products")
+            .select("*", {
+                count: "exact",
+                head: true
+            });
+
 
         if (productError) {
-            console.error("Lỗi lấy sản phẩm:", productError);
+
+            console.error(
+                "Lỗi lấy số sản phẩm:",
+                productError
+            );
+
         }
 
 
-        // ==============================
-        // ĐẾM NGƯỜI DÙNG
-        // ==============================
+        /* =========================================
+           3. ĐẾM NGƯỜI DÙNG
+        ========================================= */
 
-        const { count: userCount, error: userError } =
-            await supabaseClient
-                .from("users")
-                .select("*", {
-                    count: "exact",
-                    head: true
-                });
+        const {
+            count: userCount,
+            error: userError
+        } = await supabaseClient
+            .from("users")
+            .select("*", {
+                count: "exact",
+                head: true
+            });
+
 
         if (userError) {
-            console.error("Lỗi lấy người dùng:", userError);
+
+            console.error(
+                "Lỗi lấy số người dùng:",
+                userError
+            );
+
         }
 
 
-        // ==============================
-        // HIỂN THỊ
-        // ==============================
+        /* =========================================
+           4. TÍNH DOANH THU
+        ========================================= */
 
-        document.getElementById("orderCount").textContent =
-            orderCount ?? 0;
+        const {
+            data: orders,
+            error: revenueError
+        } = await supabaseClient
+            .from("orders")
+            .select(`
+                total,
+                order_status
+            `);
 
-        document.getElementById("productCount").textContent =
-            productCount ?? 0;
 
-        document.getElementById("userCount").textContent =
-            userCount ?? 0;
+        if (revenueError) {
+
+            console.error(
+                "Lỗi lấy doanh thu:",
+                revenueError
+            );
+
+        }
 
 
-    } catch (error) {
+        let revenue = 0;
 
-        console.error("Lỗi Dashboard:", error);
+
+        if (Array.isArray(orders)) {
+
+            revenue =
+                orders.reduce(
+                    function(sum, order) {
+
+                        /* Không tính đơn đã hủy */
+
+                        if (
+                            order.order_status ===
+                            "Đã hủy"
+                        ) {
+
+                            return sum;
+
+                        }
+
+
+                        return (
+                            sum +
+                            (
+                                Number(
+                                    order.total
+                                ) || 0
+                            )
+                        );
+
+                    },
+                    0
+                );
+
+        }
+
+
+        /* =========================================
+           5. HIỂN THỊ DASHBOARD
+        ========================================= */
+
+        const totalOrders =
+            document.getElementById(
+                "totalOrders"
+            );
+
+
+        const totalProducts =
+            document.getElementById(
+                "totalProducts"
+            );
+
+
+        const totalUsers =
+            document.getElementById(
+                "totalUsers"
+            );
+
+
+        const totalRevenue =
+            document.getElementById(
+                "totalRevenue"
+            );
+
+
+        if (totalOrders) {
+
+            totalOrders.textContent =
+                orderCount ?? 0;
+
+        }
+
+
+        if (totalProducts) {
+
+            totalProducts.textContent =
+                productCount ?? 0;
+
+        }
+
+
+        if (totalUsers) {
+
+            totalUsers.textContent =
+                userCount ?? 0;
+
+        }
+
+
+        if (totalRevenue) {
+
+            totalRevenue.textContent =
+                revenue.toLocaleString(
+                    "vi-VN"
+                ) + "đ";
+
+        }
+
+
+        /* =========================================
+           6. DEBUG
+        ========================================= */
+
+        console.log(
+            "DASHBOARD ORDERS:",
+            orderCount
+        );
+
+        console.log(
+            "DASHBOARD PRODUCTS:",
+            productCount
+        );
+
+        console.log(
+            "DASHBOARD USERS:",
+            userCount
+        );
+
+        console.log(
+            "DASHBOARD REVENUE:",
+            revenue
+        );
+
+        console.log(
+            "================================="
+        );
+
+    }
+    catch (error) {
+
+        console.error(
+            "LỖI DASHBOARD:",
+            error
+        );
 
     }
 
@@ -363,11 +545,20 @@ document.addEventListener(
             document.getElementById(
                 "contentMenu"
             );
+        const inventoryMenu =
+            document.getElementById(
+                "inventoryMenu"
+            );
 
 
         const ordersSection =
             document.getElementById(
                 "ordersSection"
+            );
+
+        const inventorySection =
+            document.getElementById(
+            "inventorySection"
             );
 
         const comingSoonSection =
@@ -471,6 +662,23 @@ document.addEventListener(
                 ordersSection.style.display =
                     "none";
 
+            }
+
+            if (inventorySection) {
+
+                inventorySection.style.display =
+                    "none";
+
+            }
+
+            if (inventorySection) {
+                inventorySection.style.display =
+                    "none";
+            }
+
+            if (ordersSection) {
+                ordersSection.style.display =
+                "block";
             }
 
 
@@ -633,6 +841,73 @@ document.addEventListener(
             }
 
         }
+        
+        /* =========================================
+   HIỆN QUẢN LÝ KHO
+========================================= */
+
+function showInventory() {
+
+    clearActiveMenu();
+
+
+    if (inventoryMenu) {
+
+        inventoryMenu.classList.add(
+            "active"
+        );
+
+    }
+
+
+    if (adminHeader) {
+
+        adminHeader.style.display =
+            "none";
+
+    }
+
+
+    if (dashboardStats) {
+
+        dashboardStats.style.display =
+            "none";
+
+    }
+
+
+    if (adminContent) {
+
+        adminContent.style.display =
+            "none";
+
+    }
+
+
+    if (ordersSection) {
+
+        ordersSection.style.display =
+            "none";
+
+    }
+
+
+    if (comingSoonSection) {
+
+        comingSoonSection.style.display =
+            "none";
+
+    }
+
+
+    if (inventorySection) {
+
+        inventorySection.style.display =
+            "block";
+
+    }
+
+}
 
 
         /* =========================================
@@ -673,6 +948,25 @@ document.addEventListener(
             );
 
         }
+
+        /* =========================================
+   CLICK KHO
+========================================= */
+
+if (inventoryMenu) {
+
+    inventoryMenu.addEventListener(
+        "click",
+        function (event) {
+
+            event.preventDefault();
+
+            showInventory();
+
+        }
+    );
+
+}
 
 
         /* =========================================

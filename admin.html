@@ -79,6 +79,16 @@
         Người dùng
     </a>
 
+    <!-- KHO -->
+    <a
+        href="#"
+        id="inventoryMenu"
+        class="admin-menu-item"
+    >
+        <span>🏭</span>
+        Kho
+    </a>
+
 
     <!-- NỘI DUNG -->
     <a
@@ -369,6 +379,334 @@
 </section>
 
 <!-- =========================================
+     QUẢN LÝ KHO
+========================================= -->
+
+<section
+    id="inventorySection"
+    class="admin-section"
+    style="display: none;"
+>
+
+    <div class="section-header">
+
+        <div>
+
+            <h1>
+                Quản lý kho
+            </h1>
+
+            <p>
+                Theo dõi tồn kho, nhập kho và xuất kho
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         THỐNG KÊ KHO
+    =============================== -->
+
+    <div class="inventory-stats">
+
+
+        <!-- TỔNG TỒN -->
+
+        <div class="inventory-stat-card">
+
+            <div class="inventory-stat-icon">
+                📦
+            </div>
+
+            <div>
+
+                <p>
+                    Tổng số lượng tồn
+                </p>
+
+                <h2 id="inventoryTotalQuantity">
+                    0
+                </h2>
+
+                <span>
+                    sản phẩm
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- GIÁ TRỊ TỒN -->
+
+        <div class="inventory-stat-card">
+
+            <div class="inventory-stat-icon">
+                💰
+            </div>
+
+            <div>
+
+                <p>
+                    Giá trị tồn kho
+                </p>
+
+                <h2 id="inventoryTotalValue">
+                    0đ
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- SẮP HẾT -->
+
+        <div class="inventory-stat-card">
+
+            <div class="inventory-stat-icon">
+                ⚠️
+            </div>
+
+            <div>
+
+                <p>
+                    Sản phẩm sắp hết
+                </p>
+
+                <h2 id="inventoryLowStock">
+                    0
+                </h2>
+
+                <span>
+                    sản phẩm
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- ĐANG NHẬP -->
+
+        <div class="inventory-stat-card">
+
+            <div class="inventory-stat-icon">
+                🚚
+            </div>
+
+            <div>
+
+                <p>
+                    Đang nhập hàng
+                </p>
+
+                <h2 id="inventoryPendingReceipts">
+                    0
+                </h2>
+
+                <span>
+                    phiếu
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- GIÁ TRỊ NHẬP -->
+
+        <div class="inventory-stat-card">
+
+            <div class="inventory-stat-icon">
+                📥
+            </div>
+
+            <div>
+
+                <p>
+                    Giá trị nhập
+                </p>
+
+                <h2 id="inventoryImportValue">
+                    0đ
+                </h2>
+
+            </div>
+
+        </div>
+
+
+        <!-- GIÁ TRỊ XUẤT -->
+
+        <div class="inventory-stat-card">
+
+            <div class="inventory-stat-icon">
+                📤
+            </div>
+
+            <div>
+
+                <p>
+                    Giá trị xuất
+                </p>
+
+                <h2 id="inventoryExportValue">
+                    0đ
+                </h2>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ==============================
+         CÁC CHỨC NĂNG KHO
+    =============================== -->
+
+    <div class="inventory-actions">
+
+
+        <button
+            type="button"
+            id="stockReceiptButton"
+            class="inventory-action-btn"
+        >
+
+            <span>
+                📥
+            </span>
+
+            Nhập kho
+
+        </button>
+
+
+        <button
+            type="button"
+            id="stockIssueButton"
+            class="inventory-action-btn"
+        >
+
+            <span>
+                📤
+            </span>
+
+            Xuất kho
+
+        </button>
+
+
+        <button
+            type="button"
+            id="stockHistoryButton"
+            class="inventory-action-btn"
+        >
+
+            <span>
+                📋
+            </span>
+
+            Lịch sử kho
+
+        </button>
+
+
+        <button
+            type="button"
+            id="stockCheckButton"
+            class="inventory-action-btn"
+        >
+
+            <span>
+                🔍
+            </span>
+
+            Kiểm kê
+
+        </button>
+
+
+    </div>
+
+
+    <!-- ==============================
+         SẢN PHẨM SẮP HẾT
+    =============================== -->
+
+    <div class="inventory-content-box">
+
+        <div class="inventory-box-header">
+
+            <div>
+
+                <h2>
+                    Sản phẩm sắp hết hàng
+                </h2>
+
+                <p>
+                    Những sản phẩm cần được nhập thêm
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="lowStockList"
+            class="inventory-empty"
+        >
+
+            Chưa có dữ liệu.
+
+        </div>
+
+    </div>
+
+
+    <!-- ==============================
+         PHIẾU NHẬP ĐANG CHỜ
+    =============================== -->
+
+    <div class="inventory-content-box">
+
+        <div class="inventory-box-header">
+
+            <div>
+
+                <h2>
+                    Phiếu nhập đang chờ
+                </h2>
+
+                <p>
+                    Các phiếu nhập chưa được xác nhận
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="pendingReceiptList"
+            class="inventory-empty"
+        >
+
+            Chưa có phiếu nhập.
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- =========================================
      CÁC KHU VỰC QUẢN LÝ KHÁC
 ========================================= -->
 
@@ -549,6 +887,14 @@
 
 <!-- QUẢN LÝ ĐƠN HÀNG -->
 <script src="js/admin-orders.js"></script>
+
+<script src="js/admin-inventory.js"></script>
+
+<script src="js/admin-stock-receipt.js"></script>
+
+<script src="js/admin-stock-history.js"></script>
+
+<script src="js/admin-stock-issue.js"></script>
 
 
 </body>
